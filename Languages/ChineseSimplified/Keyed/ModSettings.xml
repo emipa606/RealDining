@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <RealDining_Mod_Settings>【真实用餐】Mod设置</RealDining_Mod_Settings>
+  <Restore_default>恢复默认</Restore_default>
+  <Random_degree_of_food_selection>食物选择随机度</Random_degree_of_food_selection>
+  <Random_degree_explain>（最低：无随机）</Random_degree_explain>
+  <Lowest>最低</Lowest>
+  <Low>低</Low>
+  <Medium>中</Medium>
+  <High>高</High>
+  <Highest>最高</Highest>
+  <The_importance_of_the_mood>食物带来的心情在选择时的重要性</The_importance_of_the_mood>
+  <Mood_degree_explain>（中：接近游戏原版程度）</Mood_degree_explain>
+  <Repeated_food_selection_value>重复食物选取值（上次吃过的）：</Repeated_food_selection_value>
+  <Repeated_food_selection_value2>重复食物选取值（上上次吃过的）：</Repeated_food_selection_value2>
+  <Repeated_value_explain>殖民者选择食物时对于曾经吃过的相同食物的喜厌值，越低殖民者选择该相同食物的优先度越低</Repeated_value_explain>
+  <Repeated_value_explain2>（0：该相同食物是当前最好的食物时，才可能被选择   10：殖民者不再关心是否上次吃过该类食物）</Repeated_value_explain2>
+  <Eat_threshold>用餐阈值</Eat_threshold>
+  <Eat_threshold_explain>殖民者在用餐时间时，当自己的食物值百分比小于游戏原版主动吃饭的阈值加上该阈值时，殖民者就会选择去用餐</Eat_threshold_explain>
+  <Priority_NotInventory_Food>优先选择不在背包内的食物（仅在居住区内有效）</Priority_NotInventory_Food>
+  <Dinner_Time_Mode>用餐时间在时间表上的显示位置</Dinner_Time_Mode>
+  <Dinner_Time_Mode0>左边</Dinner_Time_Mode0>
+  <Dinner_Time_Mode1>中间</Dinner_Time_Mode1>
+  <Dinner_Time_Mode2>最右边</Dinner_Time_Mode2>
+</LanguageData>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <RealDining_Mod_Settings>[RealDining] Mod Settings</RealDining_Mod_Settings>
+  <Restore_default>Restore default</Restore_default>
+  <Random_degree_of_food_selection>Random degree of food selection</Random_degree_of_food_selection>
+  <Random_degree_explain>(Lowest: no random)</Random_degree_explain>
+  <Lowest>Lowest</Lowest>
+  <Low>Low</Low>
+  <Medium>Medium</Medium>
+  <High>High</High>
+  <Highest>Highest</Highest>
+  <The_importance_of_the_mood>The importance of the mood brought by food in the selection</The_importance_of_the_mood>
+  <Mood_degree_explain>(Medium: close to the original game level)</Mood_degree_explain>
+  <Repeated_food_selection_value>Repeated food selection value (food ate last time):</Repeated_food_selection_value>
+  <Repeated_food_selection_value2>Repeated food selection value (food ate the time before last time):</Repeated_food_selection_value2>
+  <Repeated_value_explain>The lower the Repeated food selection value, the lower the priority of colonists to choose the same kind of food they had eaten</Repeated_value_explain>
+  <Repeated_value_explain2>(0: the same food can only be selected when it is the best food at present   10: the colonists no longer care about whether they have eaten this kind of food)</Repeated_value_explain2>
+  <Eat_threshold>Meal threshold</Eat_threshold>
+  <Eat_threshold_explain>During the "dinner time", when the percentage of value of their own food is less than the threshold value of the original game meal plus the threshold value, the colonists will choose to eat</Eat_threshold_explain>
+  <Priority_NotInventory_Food>Priority of food not in backpack (only valid in home area)</Priority_NotInventory_Food>
+  <Dinner_Time_Mode>Display position of dinner time on the schedule</Dinner_Time_Mode>
+  <Dinner_Time_Mode0>Left</Dinner_Time_Mode0>
+  <Dinner_Time_Mode1>Middle</Dinner_Time_Mode1>
+  <Dinner_Time_Mode2>Rightmost</Dinner_Time_Mode2>
+
+</LanguageData>

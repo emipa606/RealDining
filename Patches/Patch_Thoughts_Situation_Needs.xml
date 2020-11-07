@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/ThoughtDef[defName="NeedFood"]/stages</xpath>
+    <value>
+      <li>
+        <label>饥饿</label>
+        <description>我非常饿，但是快开饭了，我还忍得住！</description>
+        <baseMoodEffect>0</baseMoodEffect>
+      </li>
+    </value>
+  </Operation>
+</Patch>

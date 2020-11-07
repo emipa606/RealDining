@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThoughtDef>
+    <defName>EatFirstDifferentFood</defName>
+    <durationDays>0.6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>吃到不同的食物</label>
+        <description>新的食物，新的体验。不怕吃腻食物了！</description>
+        <baseMoodEffect>1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef>
+    <defName>EatSecondDifferentFood</defName>
+    <durationDays>1.2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>丰富的食物</label>
+        <description>尝到了这么多丰富的食物，我的生活充满了色彩！</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>

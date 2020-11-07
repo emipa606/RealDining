@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <TimeAssignmentDef Class="YC.RealDining.Resource.DefClass.TimeAssignmentDefDinner">
+    <defName>Dinner</defName>
+    <label>dinner</label>
+    <color>(139,69,19)</color>
+  </TimeAssignmentDef>
+</Defs>

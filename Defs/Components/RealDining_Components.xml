@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <components>
+    <li Class="YC.RealDining.Resource.ModData">
+      <allowUsingAbilities>True</allowUsingAbilities>
+    </li>
+  </components>
+</Defs>
