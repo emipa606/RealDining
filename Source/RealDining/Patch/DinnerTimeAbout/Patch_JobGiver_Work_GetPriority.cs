@@ -1,5 +1,4 @@
-﻿using System;
-using HarmonyLib;
+﻿using HarmonyLib;
 using RimWorld;
 using Verse;
 using YC.RealDining.Resource.DefClass;
@@ -9,7 +8,7 @@ namespace YC.RealDining.Patch.DinnerTimeAbout
     // Token: 0x0200000F RID: 15
     [HarmonyPatch(typeof(JobGiver_Work))]
     [HarmonyPatch("GetPriority")]
-    [HarmonyPatch(new Type[]
+    [HarmonyPatch(new[]
     {
         typeof(Pawn)
     })]
@@ -24,11 +23,14 @@ namespace YC.RealDining.Patch.DinnerTimeAbout
                 __result = 0f;
                 return false;
             }
-            TimeAssignmentDef timeAssignmentDef = (pawn.timetable == null) ? TimeAssignmentDefOf.Anything : pawn.timetable.CurrentAssignment;
+
+            var timeAssignmentDef =
+                pawn.timetable == null ? TimeAssignmentDefOf.Anything : pawn.timetable.CurrentAssignment;
             if (timeAssignmentDef != TimeAssignmentDefDinner.DinnerDef)
             {
                 return true;
             }
+
             __result = 2f;
             return false;
         }

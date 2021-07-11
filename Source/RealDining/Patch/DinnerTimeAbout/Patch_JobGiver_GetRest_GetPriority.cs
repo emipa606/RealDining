@@ -1,5 +1,4 @@
-﻿using System;
-using HarmonyLib;
+﻿using HarmonyLib;
 using RimWorld;
 using Verse;
 using Verse.AI.Group;
@@ -10,7 +9,7 @@ namespace YC.RealDining.Patch.DinnerTimeAbout
     // Token: 0x0200000E RID: 14
     [HarmonyPatch(typeof(JobGiver_GetRest))]
     [HarmonyPatch("GetPriority")]
-    [HarmonyPatch(new Type[]
+    [HarmonyPatch(new[]
     {
         typeof(Pawn)
     })]
@@ -18,48 +17,58 @@ namespace YC.RealDining.Patch.DinnerTimeAbout
     {
         // Token: 0x0600002E RID: 46 RVA: 0x000037C0 File Offset: 0x000019C0
         [HarmonyPrefix]
-        private static bool Prefix(RestCategory ___minCategory, float ___maxLevelPercentage, ref float __result, Pawn pawn)
+        private static bool Prefix(RestCategory ___minCategory, float ___maxLevelPercentage, ref float __result,
+            Pawn pawn)
         {
-            Need_Rest rest = pawn.needs.rest;
+            var rest = pawn.needs.rest;
             if (rest == null)
             {
                 __result = 0f;
                 return false;
             }
+
             if (rest.CurCategory < ___minCategory)
             {
                 __result = 0f;
                 return false;
             }
+
             if (rest.CurLevelPercentage > ___maxLevelPercentage)
             {
                 __result = 0f;
                 return false;
             }
+
             if (Find.TickManager.TicksGame < pawn.mindState.canSleepTick)
             {
                 __result = 0f;
                 return false;
             }
+
             var humanlike = pawn.RaceProps.Humanlike;
-            if (humanlike)
+            if (!humanlike)
             {
-                TimeAssignmentDef timeAssignmentDef = (pawn.timetable == null) ? TimeAssignmentDefOf.Anything : pawn.timetable.CurrentAssignment;
-                if (timeAssignmentDef != TimeAssignmentDefDinner.DinnerDef)
-                {
-                    return true;
-                }
-                Lord lord = pawn.GetLord();
-                if (lord != null && !lord.CurLordToil.AllowSatisfyLongNeeds)
-                {
-                    __result = 0f;
-                    return false;
-                }
-                var curLevel = rest.CurLevel;
-                __result = curLevel < 0.3f ? 8f : 0f;
+                return true;
+            }
+
+            var timeAssignmentDef = pawn.timetable == null
+                ? TimeAssignmentDefOf.Anything
+                : pawn.timetable.CurrentAssignment;
+            if (timeAssignmentDef != TimeAssignmentDefDinner.DinnerDef)
+            {
+                return true;
+            }
+
+            var lord = pawn.GetLord();
+            if (lord != null && !lord.CurLordToil.AllowSatisfyLongNeeds)
+            {
+                __result = 0f;
                 return false;
             }
-            return true;
+
+            var curLevel = rest.CurLevel;
+            __result = curLevel < 0.3f ? 8f : 0f;
+            return false;
         }
     }
 }

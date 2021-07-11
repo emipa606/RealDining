@@ -6,212 +6,6 @@ namespace YC.RealDining.Resource
     // Token: 0x02000005 RID: 5
     public class ModSetting : ModSettings
     {
-        // Token: 0x06000011 RID: 17 RVA: 0x000026A4 File Offset: 0x000008A4
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_Values.Look(ref moodInfluenceX, "moodInfluenceX", 0.88f, false);
-            Scribe_Values.Look(ref randomLevel, "randomLevel", 103f, false);
-            Scribe_Values.Look(ref lastFoodInfluenceX, "lastFoodInfluenceX", 0.4f, false);
-            Scribe_Values.Look(ref llastFoodInfluenceX, "llastFoodInfluenceX", 0.6f, false);
-            Scribe_Values.Look(ref eatThreshold, "eatThreshold", 0.25f, false);
-            Scribe_Values.Look(ref priorityRoomFood, "priorityRoomFood", false, false);
-            Scribe_Values.Look(ref dinnerTimeMode, "dinnerTimeMode", 0, false);
-        }
-
-        // Token: 0x06000012 RID: 18 RVA: 0x0000274C File Offset: 0x0000094C
-        public static void InitSetting()
-        {
-            moodInfluenceX = 0.88f;
-            randomLevel = 103f;
-            lastFoodInfluenceX = 0.4f;
-            llastFoodInfluenceX = 0.6f;
-            eatThreshold = 0.25f;
-            priorityRoomFood = false;
-            dinnerTimeMode = 0;
-        }
-
-        // Token: 0x06000013 RID: 19 RVA: 0x00002798 File Offset: 0x00000998
-        public static string ValLevelLabel(float val)
-        {
-            if (val == moodInfluenceX)
-            {
-                if (0.68f.Equals(val))
-                {
-                    return "Lowest";
-                }
-                if (0.88f.Equals(val))
-                {
-                    return "Low";
-                }
-                if (1.03f.Equals(val))
-                {
-                    return "Medium";
-                }
-                if (1.25f.Equals(val))
-                {
-                    return "High";
-                }
-                if (1.5f.Equals(val))
-                {
-                    return "Highest";
-                }
-            }
-            else
-            {
-                if (val == randomLevel)
-                {
-                    if (0f.Equals(val))
-                    {
-                        return "Lowest";
-                    }
-                    if (50f.Equals(val))
-                    {
-                        return "Low";
-                    }
-                    if (103f.Equals(val))
-                    {
-                        return "Medium";
-                    }
-                    if (200f.Equals(val))
-                    {
-                        return "High";
-                    }
-                    if (300f.Equals(val))
-                    {
-                        return "Highest";
-                    }
-                }
-            }
-            return "ValLevelLabel Error";
-        }
-
-        // Token: 0x06000014 RID: 20 RVA: 0x00002920 File Offset: 0x00000B20
-        public static float ValLevelNum(float val)
-        {
-            if (val == moodInfluenceX)
-            {
-                if (0.68f.Equals(val))
-                {
-                    return 1f;
-                }
-                if (0.88f.Equals(val))
-                {
-                    return 2f;
-                }
-                if (1.03f.Equals(val))
-                {
-                    return 3f;
-                }
-                if (1.25f.Equals(val))
-                {
-                    return 4f;
-                }
-                if (1.5f.Equals(val))
-                {
-                    return 5f;
-                }
-            }
-            else
-            {
-                if (val == randomLevel)
-                {
-                    if (0f.Equals(val))
-                    {
-                        return 1f;
-                    }
-                    if (50f.Equals(val))
-                    {
-                        return 2f;
-                    }
-                    if (103f.Equals(val))
-                    {
-                        return 3f;
-                    }
-                    if (200f.Equals(val))
-                    {
-                        return 4f;
-                    }
-                    if (300f.Equals(val))
-                    {
-                        return 5f;
-                    }
-                }
-            }
-            return -1f;
-        }
-
-        // Token: 0x06000015 RID: 21 RVA: 0x00002AA8 File Offset: 0x00000CA8
-        public static float ValNumLevel(float val, float num)
-        {
-            if (val == moodInfluenceX)
-            {
-                if (1f.Equals(num))
-                {
-                    return 0.68f;
-                }
-                if (2f.Equals(num))
-                {
-                    return 0.88f;
-                }
-                if (3f.Equals(num))
-                {
-                    return 1.03f;
-                }
-                if (4f.Equals(num))
-                {
-                    return 1.25f;
-                }
-                if (5f.Equals(num))
-                {
-                    return 1.5f;
-                }
-            }
-            else
-            {
-                if (val == randomLevel)
-                {
-                    if (1f.Equals(num))
-                    {
-                        return 0f;
-                    }
-                    if (2f.Equals(num))
-                    {
-                        return 50f;
-                    }
-                    if (3f.Equals(num))
-                    {
-                        return 103f;
-                    }
-                    if (4f.Equals(num))
-                    {
-                        return 200f;
-                    }
-                    if (5f.Equals(num))
-                    {
-                        return 300f;
-                    }
-                }
-            }
-            return -100f;
-        }
-
-        // Token: 0x06000016 RID: 22 RVA: 0x00002C30 File Offset: 0x00000E30
-        public static string GetDinnerTimeModeStr()
-        {
-            switch (dinnerTimeMode)
-            {
-                case 0:
-                    return "Dinner_Time_Mode0";
-                case 1:
-                    return  "Dinner_Time_Mode1";
-                case 2:
-                    return "Dinner_Time_Mode2";
-                default:
-                    return "dinnerTimeMode null";
-            }
-        }
-
         // Token: 0x04000008 RID: 8
         public const float moodInfluenceXDefault = 0.88f;
 
@@ -229,39 +23,6 @@ namespace YC.RealDining.Resource
 
         // Token: 0x0400000D RID: 13
         public const int dinnerTimeModeDefault = 0;
-
-        // Token: 0x0400000E RID: 14
-        public static string[] levelLabel = new string[]
-        {
-            "",
-            "Lowest",
-            "Low",
-            "Medium",
-            "High",
-            "Highest"
-        };
-
-        // Token: 0x0400000F RID: 15
-        public static float[] moodLevelVal = new float[]
-        {
-            0f,
-            0.68f,
-            0.88f,
-            1.03f,
-            1.25f,
-            1.5f
-        };
-
-        // Token: 0x04000010 RID: 16
-        public static float[] randomLevelVal = new float[]
-        {
-            0f,
-            0f,
-            50f,
-            103f,
-            200f,
-            300f
-        };
 
         // Token: 0x04000011 RID: 17
         public const float randomLevelHighest = 300f;
@@ -293,6 +54,39 @@ namespace YC.RealDining.Resource
         // Token: 0x0400001A RID: 26
         public const float moodInfLevelLowest = 0.68f;
 
+        // Token: 0x0400000E RID: 14
+        public static string[] levelLabel =
+        {
+            "",
+            "Lowest",
+            "Low",
+            "Medium",
+            "High",
+            "Highest"
+        };
+
+        // Token: 0x0400000F RID: 15
+        public static float[] moodLevelVal =
+        {
+            0f,
+            0.68f,
+            0.88f,
+            1.03f,
+            1.25f,
+            1.5f
+        };
+
+        // Token: 0x04000010 RID: 16
+        public static float[] randomLevelVal =
+        {
+            0f,
+            0f,
+            50f,
+            103f,
+            200f,
+            300f
+        };
+
         // Token: 0x0400001B RID: 27
         public static float moodInfluenceX = 0.88f;
 
@@ -315,6 +109,179 @@ namespace YC.RealDining.Resource
         public static bool priorityRoomFood;
 
         // Token: 0x04000022 RID: 34
-        public static int dinnerTimeMode = 0;
+        public static int dinnerTimeMode;
+
+        // Token: 0x06000011 RID: 17 RVA: 0x000026A4 File Offset: 0x000008A4
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref moodInfluenceX, "moodInfluenceX", 0.88f);
+            Scribe_Values.Look(ref randomLevel, "randomLevel", 103f);
+            Scribe_Values.Look(ref lastFoodInfluenceX, "lastFoodInfluenceX", 0.4f);
+            Scribe_Values.Look(ref llastFoodInfluenceX, "llastFoodInfluenceX", 0.6f);
+            Scribe_Values.Look(ref eatThreshold, "eatThreshold", 0.25f);
+            Scribe_Values.Look(ref priorityRoomFood, "priorityRoomFood");
+            Scribe_Values.Look(ref dinnerTimeMode, "dinnerTimeMode");
+        }
+
+        // Token: 0x06000012 RID: 18 RVA: 0x0000274C File Offset: 0x0000094C
+        public static void InitSetting()
+        {
+            moodInfluenceX = 0.88f;
+            randomLevel = 103f;
+            lastFoodInfluenceX = 0.4f;
+            llastFoodInfluenceX = 0.6f;
+            eatThreshold = 0.25f;
+            priorityRoomFood = false;
+            dinnerTimeMode = 0;
+        }
+
+        // Token: 0x06000013 RID: 19 RVA: 0x00002798 File Offset: 0x00000998
+        public static string ValLevelLabel(float val)
+        {
+            if (val == moodInfluenceX)
+            {
+                switch (val)
+                {
+                    case 0.68f:
+                        return "Lowest";
+                    case 0.88f:
+                        return "Low";
+                    case 1.03f:
+                        return "Medium";
+                    case 1.25f:
+                        return "High";
+                    case 1.5f:
+                        return "Highest";
+                }
+            }
+            else
+            {
+                if (val != randomLevel)
+                {
+                    return "ValLevelLabel Error";
+                }
+
+                switch (val)
+                {
+                    case 0f:
+                        return "Lowest";
+                    case 50f:
+                        return "Low";
+                    case 103f:
+                        return "Medium";
+                    case 200f:
+                        return "High";
+                    case 300f:
+                        return "Highest";
+                }
+            }
+
+            return "ValLevelLabel Error";
+        }
+
+        // Token: 0x06000014 RID: 20 RVA: 0x00002920 File Offset: 0x00000B20
+        public static float ValLevelNum(float val)
+        {
+            if (val == moodInfluenceX)
+            {
+                switch (val)
+                {
+                    case 0.68f:
+                        return 1f;
+                    case 0.88f:
+                        return 2f;
+                    case 1.03f:
+                        return 3f;
+                    case 1.25f:
+                        return 4f;
+                    case 1.5f:
+                        return 5f;
+                }
+            }
+            else
+            {
+                if (val != randomLevel)
+                {
+                    return -1f;
+                }
+
+                switch (val)
+                {
+                    case 0f:
+                        return 1f;
+                    case 50f:
+                        return 2f;
+                    case 103f:
+                        return 3f;
+                    case 200f:
+                        return 4f;
+                    case 300f:
+                        return 5f;
+                }
+            }
+
+            return -1f;
+        }
+
+        // Token: 0x06000015 RID: 21 RVA: 0x00002AA8 File Offset: 0x00000CA8
+        public static float ValNumLevel(float val, float num)
+        {
+            if (val == moodInfluenceX)
+            {
+                switch (num)
+                {
+                    case 1f:
+                        return 0.68f;
+                    case 2f:
+                        return 0.88f;
+                    case 3f:
+                        return 1.03f;
+                    case 4f:
+                        return 1.25f;
+                    case 5f:
+                        return 1.5f;
+                }
+            }
+            else
+            {
+                if (val != randomLevel)
+                {
+                    return -100f;
+                }
+
+                switch (num)
+                {
+                    case 1f:
+                        return 0f;
+                    case 2f:
+                        return 50f;
+                    case 3f:
+                        return 103f;
+                    case 4f:
+                        return 200f;
+                    case 5f:
+                        return 300f;
+                }
+            }
+
+            return -100f;
+        }
+
+        // Token: 0x06000016 RID: 22 RVA: 0x00002C30 File Offset: 0x00000E30
+        public static string GetDinnerTimeModeStr()
+        {
+            switch (dinnerTimeMode)
+            {
+                case 0:
+                    return "Dinner_Time_Mode0";
+                case 1:
+                    return "Dinner_Time_Mode1";
+                case 2:
+                    return "Dinner_Time_Mode2";
+                default:
+                    return "dinnerTimeMode null";
+            }
+        }
     }
 }

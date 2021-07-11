@@ -1,5 +1,4 @@
-﻿using System;
-using HarmonyLib;
+﻿using HarmonyLib;
 using RimWorld;
 using Verse;
 using YC.RealDining.Resource.DefClass;
@@ -9,7 +8,7 @@ namespace YC.RealDining.Patch.DinnerTimeAbout
     // Token: 0x02000011 RID: 17
     [HarmonyPatch(typeof(ThinkNode_Priority_GetJoy))]
     [HarmonyPatch("GetPriority")]
-    [HarmonyPatch(new Type[]
+    [HarmonyPatch(new[]
     {
         typeof(Pawn)
     })]
@@ -24,16 +23,20 @@ namespace YC.RealDining.Patch.DinnerTimeAbout
                 __result = 0f;
                 return false;
             }
+
             if (Find.TickManager.TicksGame < 5000)
             {
                 __result = 0f;
                 return false;
             }
-            TimeAssignmentDef timeAssignmentDef = (pawn.timetable == null) ? TimeAssignmentDefOf.Anything : pawn.timetable.CurrentAssignment;
+
+            var timeAssignmentDef =
+                pawn.timetable == null ? TimeAssignmentDefOf.Anything : pawn.timetable.CurrentAssignment;
             if (timeAssignmentDef != TimeAssignmentDefDinner.DinnerDef)
             {
                 return true;
             }
+
             __result = JoyUtility.LordPreventsGettingJoy(pawn) ? 0f : 7f;
             return false;
         }

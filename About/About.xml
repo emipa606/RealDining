@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>RealDining (Continued)</name>
   <packageId>Mlie.RealDining</packageId>
@@ -7,6 +7,7 @@
   <supportedVersions>
     <li>1.1</li>
     <li>1.2</li>
+    <li>1.3</li>
   </supportedVersions>
   <modDependencies>
     <li>
@@ -34,7 +35,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2077003756
 	
 [img]https://i.imgur.com/NOW7jU1.png[/img]
 殖民者将有更真实的进食选择。新增”用餐时间“，可在时间分配表中管理
-Colonists will have a more realistic choice of food.Increased "dinner time", which can be set in time assignment. 
+Colonists will have a more realistic choice of food.Increased &quot;dinner time&quot;, which can be set in time assignment. 
 
 1.优先在当前最优品质相近的食物中随机选择食用
 2.如果不是只有难吃的食物，殖民者将更喜欢选择食用与前几次不同的食物
@@ -66,7 +67,7 @@ Mod中可设置殖民者是否优先选择非背包的食物（优先去餐厅�
 Mod设置中可以修改有关随机度、重复食物优先度、食物心情重要度、用餐时间吃饭阈值的值
 
 In addition：
-it's also effective for colonists to choose food to carry with them.
+it&apos;s also effective for colonists to choose food to carry with them.
 If the colonists eat unrepeatable food, they will get a little good mood.
 Near dinner time, the colonists would endure some hunger and then eat at dinner time
 In mod, it can be set whether the colonists have priority to choose non backpack food (priority to eat in the restaurant).Valid in residential area.
@@ -82,5 +83,17 @@ if you want to remove the mod, you need to clear all the meal time of the coloni
 20.6.8 update:
 The display position of meal time can be changed in settings, including left, middle and right most positions.
 
-作者贴吧ID：222821750</description>
+作者贴吧ID：222821750
+
+[img]https://i.imgur.com/Rs6T6cr.png[/img]
+[list]
+[*] See if the the error persists if you just have this mod and its requirements active.
+[*] If not, try adding your other mods until it happens again.
+[*] Post your error-log using [url=https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib[/url] and command Ctrl+F12
+[*] For best support, please use the Discord-channel for error-reporting.
+[*] Do not report errors by making a discussion-thread, I get no notification of that.
+[*] If you have the solution for a problem, please post it to the GitHub repository.
+[/list]
+</description>
 </ModMetaData>
+

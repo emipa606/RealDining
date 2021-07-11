@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using HarmonyLib;
+﻿using HarmonyLib;
 using RimWorld;
 using Verse;
 using YC.RealDining.Resource;
@@ -10,7 +8,7 @@ namespace YC.RealDining.Patch.FoodAbout
     // Token: 0x02000009 RID: 9
     [HarmonyPatch(typeof(FoodUtility))]
     [HarmonyPatch("FoodOptimality")]
-    [HarmonyPatch(new Type[]
+    [HarmonyPatch(new[]
     {
         typeof(Pawn),
         typeof(Thing),
@@ -20,9 +18,21 @@ namespace YC.RealDining.Patch.FoodAbout
     })]
     internal class Patch_FoodOptimality
     {
+        // Token: 0x04000024 RID: 36
+        private static readonly SimpleCurve FoodOptimalityEffectFromMoodCurve = new SimpleCurve
+        {
+            new CurvePoint(-100f, -600f),
+            new CurvePoint(-10f, -100f),
+            new CurvePoint(-5f, -70f),
+            new CurvePoint(-1f, -50f),
+            new CurvePoint(0f, 0f),
+            new CurvePoint(100f, 800f)
+        };
+
         // Token: 0x0600001E RID: 30 RVA: 0x00002E5C File Offset: 0x0000105C
         [HarmonyPrefix]
-        private static bool Prefix(ref float __result, Pawn eater, Thing foodSource, ThingDef foodDef, float dist, bool takingToInventory = false)
+        private static bool Prefix(ref float __result, Pawn eater, Thing foodSource, ThingDef foodDef, float dist,
+            bool takingToInventory = false)
         {
             var num = 300f;
             num -= dist;
@@ -35,16 +45,18 @@ namespace YC.RealDining.Patch.FoodAbout
                     num -= 150f;
                     break;
                 case FoodPreferability.DesperateOnlyForHumanlikes:
+                {
+                    var humanlike = eater.RaceProps.Humanlike;
+                    if (humanlike)
                     {
-                        var humanlike = eater.RaceProps.Humanlike;
-                        if (humanlike)
-                        {
-                            num -= 150f;
-                        }
-                        break;
+                        num -= 150f;
                     }
+
+                    break;
+                }
             }
-            CompRottable compRottable = foodSource.TryGetComp<CompRottable>();
+
+            var compRottable = foodSource.TryGetComp<CompRottable>();
             if (compRottable != null)
             {
                 if (compRottable.Stage == RotStage.Dessicated)
@@ -52,13 +64,16 @@ namespace YC.RealDining.Patch.FoodAbout
                     __result = -9999999f;
                     return false;
                 }
-                if (!takingToInventory && compRottable.Stage == RotStage.Fresh && compRottable.TicksUntilRotAtCurrentTemp < 30000)
+
+                if (!takingToInventory && compRottable.Stage == RotStage.Fresh &&
+                    compRottable.TicksUntilRotAtCurrentTemp < 30000)
                 {
                     num += 13.3f;
                 }
             }
+
             var moodTrigger = false;
-            if (eater.needs != null && eater.needs.mood != null)
+            if (eater.needs?.mood != null)
             {
                 var num2 = ModSetting.moodInfluenceX;
                 if (eater.needs.mood.CurLevel < eater.mindState.mentalBreaker.BreakThresholdExtreme)
@@ -86,16 +101,18 @@ namespace YC.RealDining.Patch.FoodAbout
                         }
                     }
                 }
-                List<ThoughtDef> list = FoodUtility.ThoughtsFromIngesting(eater, foodSource, foodDef);
+
+                var list = FoodUtility.ThoughtsFromIngesting(eater, foodSource, foodDef);
                 for (var i = 0; i < list.Count; i++)
                 {
-                    num += FoodOptimalityEffectFromMoodCurve.Evaluate(list[i].stages[0].baseMoodEffect) * num2;
-                    if (list[i].stages[0].baseMoodEffect < 0f)
+                    num += FoodOptimalityEffectFromMoodCurve.Evaluate(list[i].thought.stages[0].baseMoodEffect) * num2;
+                    if (list[i].thought.stages[0].baseMoodEffect < 0f)
                     {
                         moodTrigger = true;
                     }
                 }
             }
+
             if (foodDef.ingestible != null)
             {
                 var humanlike2 = eater.RaceProps.Humanlike;
@@ -112,6 +129,7 @@ namespace YC.RealDining.Patch.FoodAbout
                     }
                 }
             }
+
             if (!moodTrigger && compRottable != null && eater.RaceProps.Humanlike)
             {
                 float num3;
@@ -124,12 +142,14 @@ namespace YC.RealDining.Patch.FoodAbout
                 {
                     num3 = ModData.foodClassRandomVal[foodDef.defName];
                 }
+
                 var num4 = 1f;
                 if (ModSetting.priorityRoomFood && ModData.findedInventoryFoodID == foodSource.GetUniqueLoadID())
                 {
                     ModData.findedInventoryFoodID = null;
                     num4 = 0.2f;
                 }
+
                 if (ModData.GetLastFoodType(eater) == foodDef.defName)
                 {
                     num += num3 * ModSetting.lastFoodInfluenceX * num4;
@@ -146,37 +166,9 @@ namespace YC.RealDining.Patch.FoodAbout
                     }
                 }
             }
+
             __result = num;
             return false;
         }
-
-        // Token: 0x04000024 RID: 36
-        private static readonly SimpleCurve FoodOptimalityEffectFromMoodCurve = new SimpleCurve
-        {
-            {
-                new CurvePoint(-100f, -600f),
-                true
-            },
-            {
-                new CurvePoint(-10f, -100f),
-                true
-            },
-            {
-                new CurvePoint(-5f, -70f),
-                true
-            },
-            {
-                new CurvePoint(-1f, -50f),
-                true
-            },
-            {
-                new CurvePoint(0f, 0f),
-                true
-            },
-            {
-                new CurvePoint(100f, 800f),
-                true
-            }
-        };
     }
 }
