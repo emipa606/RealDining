@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>RealDining (Continued)</name>
   <packageId>Mlie.RealDining</packageId>
@@ -20,22 +20,26 @@
   <loadAfter>
     <li>brrainz.harmony</li>
   </loadAfter>
-  <description>[img]https://i.imgur.com/WAEzk68.png[/img]
+  <description>[img]https://i.imgur.com/buuPQel.png[/img]
 Update of 222821750s mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2077003756
 
-[img]https://i.imgur.com/7Gzt3Rg.png[/img]
+[img]https://i.imgur.com/pufA0kM.png[/img]
 
 [table]
     [tr]
         [td][url=https://invite.gg/Mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
         [td][url=https://github.com/emipa606/RealDining][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
     [/tr]
+    [tr]
+        [td][img]https://i.imgur.com/WjDSfUn.png[/img][/td]
+        [td][img]https://i.imgur.com/Be8E2qJ.png[/img][/td]
+    [/tr]
 [/table]
 	
-[img]https://i.imgur.com/NOW7jU1.png[/img]
+[img]https://i.imgur.com/Z4GOv8H.png[/img]
 殖民者将有更真实的进食选择。新增”用餐时间“，可在时间分配表中管理
-Colonists will have a more realistic choice of food.Increased &quot;dinner time&quot;, which can be set in time assignment. 
+Colonists will have a more realistic choice of food.Increased "dinner time", which can be set in time assignment. 
 
 1.优先在当前最优品质相近的食物中随机选择食用
 2.如果不是只有难吃的食物，殖民者将更喜欢选择食用与前几次不同的食物
@@ -67,7 +71,7 @@ Mod中可设置殖民者是否优先选择非背包的食物（优先去餐厅�
 Mod设置中可以修改有关随机度、重复食物优先度、食物心情重要度、用餐时间吃饭阈值的值
 
 In addition：
-it&apos;s also effective for colonists to choose food to carry with them.
+it's also effective for colonists to choose food to carry with them.
 If the colonists eat unrepeatable food, they will get a little good mood.
 Near dinner time, the colonists would endure some hunger and then eat at dinner time
 In mod, it can be set whether the colonists have priority to choose non backpack food (priority to eat in the restaurant).Valid in residential area.
@@ -85,7 +89,7 @@ The display position of meal time can be changed in settings, including left, mi
 
 作者贴吧ID：222821750
 
-[img]https://i.imgur.com/Rs6T6cr.png[/img]
+[img]https://i.imgur.com/PwoNOj4.png[/img]
 [list]
 [*] See if the the error persists if you just have this mod and its requirements active.
 [*] If not, try adding your other mods until it happens again.
@@ -96,4 +100,3 @@ The display position of meal time can be changed in settings, including left, mi
 [/list]
 </description>
 </ModMetaData>
-
