@@ -5,18 +5,8 @@ using YC.RealDining.Resource;
 
 namespace YC.RealDining.Patch.FoodAbout;
 
-[HarmonyPatch(typeof(FoodUtility))]
-[HarmonyPatch("BestFoodInInventory")]
-[HarmonyPatch(new[]
-{
-    typeof(Pawn),
-    typeof(Pawn),
-    typeof(FoodPreferability),
-    typeof(FoodPreferability),
-    typeof(float),
-    typeof(bool)
-})]
-internal class Patch_BestFoodInInventory
+[HarmonyPatch(typeof(FoodUtility), "BestFoodInInventory_NewTemp")]
+internal class Patch_BestFoodInInventory_NewTemp
 {
     [HarmonyPostfix]
     private static void Postfix(ref Thing __result, Pawn holder, Pawn eater = null)
@@ -32,23 +22,37 @@ internal class Patch_BestFoodInInventory
             return;
         }
 
-        if (eater != null && eater.GetUniqueLoadID() != holder.GetUniqueLoadID())
-        {
-            return;
-        }
-
         if (!holder.IsColonist)
         {
             return;
         }
 
-        if (!holder.RaceProps.Humanlike || !holder.Spawned ||
-            holder.needs.food.CurLevelPercentage <= holder.RaceProps.FoodLevelPercentageWantEat * 0.45f ||
-            !holder.Map.areaManager.Home[holder.Position])
+        if (eater != holder)
         {
             return;
         }
 
-        ModData.findedInventoryFoodID = __result.GetUniqueLoadID();
+        if (!holder.RaceProps.Humanlike || !holder.Spawned)
+        {
+            return;
+        }
+
+        var needs = holder.needs;
+        float? num;
+        if (needs == null)
+        {
+            num = null;
+        }
+        else
+        {
+            var food = needs.food;
+            num = food != null ? new float?(food.CurLevelPercentage) : null;
+        }
+
+        if ((num ?? 0f) > holder.RaceProps.FoodLevelPercentageWantEat * 0.45f &&
+            holder.Map.areaManager.Home[holder.Position])
+        {
+            ModData.findedInventoryFoodID = __result?.GetUniqueLoadID();
+        }
     }
 }

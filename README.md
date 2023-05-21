@@ -75,3 +75,4 @@ The display position of meal time can be changed in settings, including left, mi
 
 
 
+https://steamcommunity.com/sharedfiles/filedetails/changelog/2280250569]Last updated 2023-05-21
