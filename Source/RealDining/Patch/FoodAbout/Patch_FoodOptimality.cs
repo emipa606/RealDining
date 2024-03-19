@@ -7,25 +7,24 @@ namespace YC.RealDining.Patch.FoodAbout;
 
 [HarmonyPatch(typeof(FoodUtility))]
 [HarmonyPatch("FoodOptimality")]
-[HarmonyPatch(new[]
-{
+[HarmonyPatch([
     typeof(Pawn),
     typeof(Thing),
     typeof(ThingDef),
     typeof(float),
     typeof(bool)
-})]
+])]
 internal class Patch_FoodOptimality
 {
-    private static readonly SimpleCurve FoodOptimalityEffectFromMoodCurve = new SimpleCurve
-    {
+    private static readonly SimpleCurve FoodOptimalityEffectFromMoodCurve =
+    [
         new CurvePoint(-100f, -600f),
         new CurvePoint(-10f, -100f),
         new CurvePoint(-5f, -70f),
         new CurvePoint(-1f, -50f),
         new CurvePoint(0f, 0f),
         new CurvePoint(100f, 800f)
-    };
+    ];
 
     [HarmonyPrefix]
     private static bool Prefix(ref float __result, Pawn eater, Thing foodSource, ThingDef foodDef, float dist,
@@ -130,14 +129,14 @@ internal class Patch_FoodOptimality
         if (!moodTrigger && compRottable != null && eater.RaceProps.Humanlike)
         {
             float num3;
-            if (!ModData.foodClassRandomVal.ContainsKey(foodDef.defName))
+            if (!ModData.foodClassRandomVal.TryGetValue(foodDef.defName, out var value))
             {
                 num3 = Rand.Range(0f, ModSetting.randomLevel);
                 ModData.foodClassRandomVal[foodDef.defName] = num3;
             }
             else
             {
-                num3 = ModData.foodClassRandomVal[foodDef.defName];
+                num3 = value;
             }
 
             var num4 = 1f;

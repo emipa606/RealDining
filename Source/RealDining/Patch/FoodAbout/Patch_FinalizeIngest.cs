@@ -9,11 +9,10 @@ namespace YC.RealDining.Patch.FoodAbout;
 
 [HarmonyPatch(typeof(Toils_Ingest))]
 [HarmonyPatch("FinalizeIngest")]
-[HarmonyPatch(new[]
-{
+[HarmonyPatch([
     typeof(Pawn),
     typeof(TargetIndex)
-})]
+])]
 internal class Patch_FinalizeIngest
 {
     [HarmonyPrefix]

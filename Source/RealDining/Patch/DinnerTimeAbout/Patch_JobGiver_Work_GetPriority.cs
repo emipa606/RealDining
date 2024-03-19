@@ -7,16 +7,15 @@ namespace YC.RealDining.Patch.DinnerTimeAbout;
 
 [HarmonyPatch(typeof(JobGiver_Work))]
 [HarmonyPatch("GetPriority")]
-[HarmonyPatch(new[]
-{
+[HarmonyPatch([
     typeof(Pawn)
-})]
+])]
 internal class Patch_JobGiver_Work_GetPriority
 {
     [HarmonyPrefix]
     private static bool Prefix(ref float __result, Pawn pawn)
     {
-        if (pawn.workSettings == null || !pawn.workSettings.EverWork)
+        if (pawn.workSettings is not { EverWork: true })
         {
             __result = 0f;
             return false;

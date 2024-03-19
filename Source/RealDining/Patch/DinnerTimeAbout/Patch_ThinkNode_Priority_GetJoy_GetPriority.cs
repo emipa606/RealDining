@@ -7,10 +7,9 @@ namespace YC.RealDining.Patch.DinnerTimeAbout;
 
 [HarmonyPatch(typeof(ThinkNode_Priority_GetJoy))]
 [HarmonyPatch("GetPriority")]
-[HarmonyPatch(new[]
-{
+[HarmonyPatch([
     typeof(Pawn)
-})]
+])]
 internal class Patch_ThinkNode_Priority_GetJoy_GetPriority
 {
     [HarmonyPrefix]

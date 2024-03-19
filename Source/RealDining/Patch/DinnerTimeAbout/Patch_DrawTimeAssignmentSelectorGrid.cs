@@ -8,16 +8,10 @@ using YC.RealDining.Resource.DefClass;
 
 namespace YC.RealDining.Patch.DinnerTimeAbout;
 
-[HarmonyPatch(typeof(TimeAssignmentSelector))]
-[HarmonyPatch("DrawTimeAssignmentSelectorGrid")]
-[HarmonyPatch(new[]
-{
-    typeof(Rect)
-})]
+[HarmonyPatch(typeof(TimeAssignmentSelector), "DrawTimeAssignmentSelectorGrid")]
 internal class Patch_DrawTimeAssignmentSelectorGrid
 {
-    [HarmonyPrefix]
-    private static bool Prefix(Rect rect)
+    private static void Postfix(Rect rect)
     {
         rect.yMax -= 2f;
         var rect2 = rect;
@@ -25,22 +19,29 @@ internal class Patch_DrawTimeAssignmentSelectorGrid
         rect2.yMax = rect2.center.y;
         if (ModSetting.dinnerTimeMode == 0)
         {
-            rect2.x += rect2.width * 3f;
+            //rect2.x += rect2.width * 3f;
+            //rect.width -= rect2.width;
         }
         else
         {
-            if (ModSetting.dinnerTimeMode == 1)
+            //if (ModSetting.dinnerTimeMode == 1)
+            //{
+            //    rect2.x += rect2.width * 4f;
+            //}
+            //else
+            //{
+            if (ModsConfig.RoyaltyActive)
             {
-                rect2.x += rect2.width * 4f;
+                rect2.x += rect2.width * 5f;
             }
             else
             {
-                rect2.x += rect2.width * 6f;
+                rect2.x += rect2.width * 4f;
             }
+            //}
         }
 
         DrawTimeAssignmentSelectorFor(rect2, TimeAssignmentDefDinner.DinnerDef);
-        return true;
     }
 
     private static void DrawTimeAssignmentSelectorFor(Rect rect, TimeAssignmentDef ta)
@@ -67,6 +68,18 @@ internal class Patch_DrawTimeAssignmentSelectorGrid
         if (TimeAssignmentSelector.selectedAssignment == ta)
         {
             Widgets.DrawBox(rect, 2);
+        }
+    }
+}
+
+[HarmonyPatch(typeof(TimeAssignmentSelector), "DrawTimeAssignmentSelectorFor")]
+internal class Patch_DrawTimeAssignmentSelectorFor
+{
+    private static void Prefix(ref Rect rect)
+    {
+        if (ModSetting.dinnerTimeMode == 0)
+        {
+            rect.x += rect.width;
         }
     }
 }

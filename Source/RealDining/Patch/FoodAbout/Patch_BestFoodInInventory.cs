@@ -5,8 +5,8 @@ using YC.RealDining.Resource;
 
 namespace YC.RealDining.Patch.FoodAbout;
 
-[HarmonyPatch(typeof(FoodUtility), "BestFoodInInventory_NewTemp")]
-internal class Patch_BestFoodInInventory_NewTemp
+[HarmonyPatch(typeof(FoodUtility), "BestFoodInInventory")]
+internal class Patch_BestFoodInInventory
 {
     [HarmonyPostfix]
     private static void Postfix(ref Thing __result, Pawn holder, Pawn eater = null)

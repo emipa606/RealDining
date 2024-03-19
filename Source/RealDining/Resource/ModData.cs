@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Verse;
 
@@ -10,7 +9,7 @@ public class ModData : GameComponent
 
     public static HadAteFoodType llastFoodType = new HadAteFoodType();
 
-    public static Dictionary<string, float> foodClassRandomVal = new Dictionary<string, float>();
+    public static readonly Dictionary<string, float> foodClassRandomVal = new Dictionary<string, float>();
 
     public static string findedInventoryFoodID;
 
@@ -67,7 +66,7 @@ public class ModData : GameComponent
 
     public override void ExposeData()
     {
-        Scribe_Deep.Look(ref lastFoodType, "lastFoodType", Array.Empty<object>());
-        Scribe_Deep.Look(ref llastFoodType, "llastFoodType", Array.Empty<object>());
+        Scribe_Deep.Look(ref lastFoodType, "lastFoodType", []);
+        Scribe_Deep.Look(ref llastFoodType, "llastFoodType", []);
     }
 }

@@ -7,10 +7,9 @@ namespace YC.RealDining.Patch.DinnerTimeAbout;
 
 [HarmonyPatch(typeof(ThoughtWorker_NeedFood))]
 [HarmonyPatch("CurrentStateInternal")]
-[HarmonyPatch(new[]
-{
+[HarmonyPatch([
     typeof(Pawn)
-})]
+])]
 internal class Patch_ThoghWokr_NedFod_CurrentStateInternal
 {
     [HarmonyPrefix]

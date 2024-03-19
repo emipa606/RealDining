@@ -8,10 +8,9 @@ namespace YC.RealDining.Patch.DinnerTimeAbout;
 
 [HarmonyPatch(typeof(JobGiver_GetFood))]
 [HarmonyPatch("GetPriority")]
-[HarmonyPatch(new[]
-{
+[HarmonyPatch([
     typeof(Pawn)
-})]
+])]
 internal class Patch_JobGiver_GetFood_GetPriority
 {
     [HarmonyPrefix]

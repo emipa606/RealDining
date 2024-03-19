@@ -9,16 +9,15 @@ namespace YC.RealDining.Patch.DinnerTimeAbout;
 
 [HarmonyPatch(typeof(JobGiver_GetJoy))]
 [HarmonyPatch("TryGiveJob")]
-[HarmonyPatch(new[]
-{
+[HarmonyPatch([
     typeof(Pawn)
-})]
+])]
 internal class Patch_JobGiver_GetJoy_TryGiveJob
 {
     private static readonly DefMap<JoyGiverDef, float> joyGiverChances = new DefMap<JoyGiverDef, float>();
 
     [HarmonyPrefix]
-    private static bool Prefix(JobGiver_GetJoy __instance, ref Job __result, Pawn pawn)
+    private static bool Prefix(ref Job __result, Pawn pawn)
     {
         var timeAssignmentDef =
             pawn.timetable == null ? TimeAssignmentDefOf.Anything : pawn.timetable.CurrentAssignment;

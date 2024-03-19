@@ -37,35 +37,35 @@ public class ModSetting : ModSettings
 
     public const float moodInfLevelLowest = 0.68f;
 
-    public static string[] levelLabel =
-    {
+    public static readonly string[] levelLabel =
+    [
         "",
         "Lowest",
         "Low",
         "Medium",
         "High",
         "Highest"
-    };
+    ];
 
-    public static float[] moodLevelVal =
-    {
+    public static readonly float[] moodLevelVal =
+    [
         0f,
         0.68f,
         0.88f,
         1.03f,
         1.25f,
         1.5f
-    };
+    ];
 
-    public static float[] randomLevelVal =
-    {
+    public static readonly float[] randomLevelVal =
+    [
         0f,
         0f,
         50f,
         103f,
         200f,
         300f
-    };
+    ];
 
     public static float moodInfluenceX = 0.88f;
 

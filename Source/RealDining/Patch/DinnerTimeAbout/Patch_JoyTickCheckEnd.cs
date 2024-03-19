@@ -9,13 +9,12 @@ namespace YC.RealDining.Patch.DinnerTimeAbout;
 
 [HarmonyPatch(typeof(JoyUtility))]
 [HarmonyPatch("JoyTickCheckEnd")]
-[HarmonyPatch(new[]
-{
+[HarmonyPatch([
     typeof(Pawn),
     typeof(JoyTickFullJoyAction),
     typeof(float),
     typeof(Building)
-})]
+])]
 internal class Patch_JoyTickCheckEnd
 {
     [HarmonyPrefix]
@@ -68,7 +67,7 @@ internal class Patch_JoyTickCheckEnd
         }
 
         var desperate = pawn.needs.food.CurCategory == HungerCategory.Starving;
-        if (!FoodUtility.TryFindBestFoodSourceFor_NewTemp(pawn, pawn, desperate, out _, out _, true, true, false, true,
+        if (!FoodUtility.TryFindBestFoodSourceFor(pawn, pawn, desperate, out _, out _, true, true, false, true,
                 false, pawn.IsWildMan()))
         {
             return false;

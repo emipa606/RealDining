@@ -10,8 +10,7 @@ namespace YC.RealDining.Patch.FoodAbout;
 
 [HarmonyPatch(typeof(FoodUtility))]
 [HarmonyPatch("SpawnedFoodSearchInnerScan")]
-[HarmonyPatch(new[]
-{
+[HarmonyPatch([
     typeof(Pawn),
     typeof(IntVec3),
     typeof(List<Thing>),
@@ -19,7 +18,7 @@ namespace YC.RealDining.Patch.FoodAbout;
     typeof(TraverseParms),
     typeof(float),
     typeof(Predicate<Thing>)
-})]
+])]
 internal class Patch_SpawnedFoodSearchInnerScan
 {
     [HarmonyPrefix]
