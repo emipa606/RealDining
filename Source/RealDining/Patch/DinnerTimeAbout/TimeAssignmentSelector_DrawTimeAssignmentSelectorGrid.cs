@@ -1,47 +1,45 @@
+using System.Linq;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
-using YC.RealDining.Resource;
-using YC.RealDining.Resource.DefClass;
 
 namespace YC.RealDining.Patch.DinnerTimeAbout;
 
+[HarmonyPriority(Priority.Last)]
 [HarmonyPatch(typeof(TimeAssignmentSelector), "DrawTimeAssignmentSelectorGrid")]
-internal class Patch_DrawTimeAssignmentSelectorGrid
+internal class TimeAssignmentSelector_DrawTimeAssignmentSelectorGrid
 {
+    private static void Prepare()
+    {
+        PatchMain.harmony.Unpatch(typeof(TimeAssignmentSelector).GetMethod("DrawTimeAssignmentSelectorGrid"),
+            HarmonyPatchType.All);
+    }
+
+    private static void Prefix(ref Rect rect)
+    {
+        var shorternBy = rect.width * 0.135f;
+        for (var i = 0; i < PatchMain.AmountOfTimeTypes + PatchMain.NonRimworldTimeTypes.Count(); i++)
+        {
+            if (i > 7)
+            {
+                rect.width -= shorternBy;
+            }
+        }
+    }
+
     private static void Postfix(Rect rect)
     {
-        rect.yMax -= 2f;
         var rect2 = rect;
         rect2.xMax = rect2.center.x;
         rect2.yMax = rect2.center.y;
-        if (ModSetting.dinnerTimeMode == 0)
+        rect2.x += rect2.width * PatchMain.AmountOfTimeTypes;
+        foreach (var nonRimworldTimeType in PatchMain.NonRimworldTimeTypes)
         {
-            //rect2.x += rect2.width * 3f;
-            //rect.width -= rect2.width;
+            DrawTimeAssignmentSelectorFor(rect2, nonRimworldTimeType);
+            rect2.x += rect2.width;
         }
-        else
-        {
-            //if (ModSetting.dinnerTimeMode == 1)
-            //{
-            //    rect2.x += rect2.width * 4f;
-            //}
-            //else
-            //{
-            if (ModsConfig.RoyaltyActive)
-            {
-                rect2.x += rect2.width * 5f;
-            }
-            else
-            {
-                rect2.x += rect2.width * 4f;
-            }
-            //}
-        }
-
-        DrawTimeAssignmentSelectorFor(rect2, TimeAssignmentDefDinner.DinnerDef);
     }
 
     private static void DrawTimeAssignmentSelectorFor(Rect rect, TimeAssignmentDef ta)
@@ -68,18 +66,6 @@ internal class Patch_DrawTimeAssignmentSelectorGrid
         if (TimeAssignmentSelector.selectedAssignment == ta)
         {
             Widgets.DrawBox(rect, 2);
-        }
-    }
-}
-
-[HarmonyPatch(typeof(TimeAssignmentSelector), "DrawTimeAssignmentSelectorFor")]
-internal class Patch_DrawTimeAssignmentSelectorFor
-{
-    private static void Prefix(ref Rect rect)
-    {
-        if (ModSetting.dinnerTimeMode == 0)
-        {
-            rect.x += rect.width;
         }
     }
 }

@@ -7,17 +7,10 @@ using YC.RealDining.Resource.DefClass;
 
 namespace YC.RealDining.Patch.DinnerTimeAbout;
 
-[HarmonyPatch(typeof(JoyUtility))]
-[HarmonyPatch("JoyTickCheckEnd")]
-[HarmonyPatch([
-    typeof(Pawn),
-    typeof(JoyTickFullJoyAction),
-    typeof(float),
-    typeof(Building)
-])]
-internal class Patch_JoyTickCheckEnd
+[HarmonyPatch(typeof(JoyUtility), nameof(JoyUtility.JoyTickCheckEnd), typeof(Pawn), typeof(JoyTickFullJoyAction),
+    typeof(float), typeof(Building))]
+internal class JoyUtility_JoyTickCheckEnd
 {
-    [HarmonyPrefix]
     private static bool Prefix(Pawn pawn, JoyTickFullJoyAction fullJoyAction = JoyTickFullJoyAction.EndJob,
         float extraJoyGainFactor = 1f, Building joySource = null)
     {

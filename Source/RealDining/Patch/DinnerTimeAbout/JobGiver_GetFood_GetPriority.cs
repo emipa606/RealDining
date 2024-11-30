@@ -6,14 +6,9 @@ using YC.RealDining.Resource.DefClass;
 
 namespace YC.RealDining.Patch.DinnerTimeAbout;
 
-[HarmonyPatch(typeof(JobGiver_GetFood))]
-[HarmonyPatch("GetPriority")]
-[HarmonyPatch([
-    typeof(Pawn)
-])]
-internal class Patch_JobGiver_GetFood_GetPriority
+[HarmonyPatch(typeof(JobGiver_GetFood), nameof(JobGiver_GetFood.GetPriority), typeof(Pawn))]
+internal class JobGiver_GetFood_GetPriority
 {
-    [HarmonyPrefix]
     private static bool Prefix(HungerCategory ___minCategory, float ___maxLevelPercentage, ref float __result,
         Pawn pawn)
     {

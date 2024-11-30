@@ -7,15 +7,9 @@ using YC.RealDining.Resource;
 
 namespace YC.RealDining.Patch.FoodAbout;
 
-[HarmonyPatch(typeof(Toils_Ingest))]
-[HarmonyPatch("FinalizeIngest")]
-[HarmonyPatch([
-    typeof(Pawn),
-    typeof(TargetIndex)
-])]
-internal class Patch_FinalizeIngest
+[HarmonyPatch(typeof(Toils_Ingest), nameof(Toils_Ingest.FinalizeIngest), typeof(Pawn), typeof(TargetIndex))]
+internal class Toils_Ingest_FinalizeIngest
 {
-    [HarmonyPrefix]
     private static bool Prefix(ref Toil __result, Pawn ingester, TargetIndex ingestibleInd)
     {
         var toil = new Toil();

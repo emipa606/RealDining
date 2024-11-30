@@ -88,14 +88,6 @@ public class ModMain : Mod
             ModSetting.priorityRoomFood = !ModSetting.priorityRoomFood;
         }
 
-        if (listing_Standard.ButtonTextLabeled("Dinner_Time_Mode".Translate(),
-                ModSetting.GetDinnerTimeModeStr().Translate()))
-        {
-            ModSetting.dinnerTimeMode = ModSetting.dinnerTimeMode == 0 ? 2 : 0;
-            //ModSetting.dinnerTimeMode++;
-            //ModSetting.dinnerTimeMode %= 3;
-        }
-
         if (currentVersion != null)
         {
             listing_Standard.Gap();

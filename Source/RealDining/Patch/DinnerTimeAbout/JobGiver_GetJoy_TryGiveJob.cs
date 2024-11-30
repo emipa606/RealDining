@@ -7,16 +7,11 @@ using YC.RealDining.Resource.DefClass;
 
 namespace YC.RealDining.Patch.DinnerTimeAbout;
 
-[HarmonyPatch(typeof(JobGiver_GetJoy))]
-[HarmonyPatch("TryGiveJob")]
-[HarmonyPatch([
-    typeof(Pawn)
-])]
-internal class Patch_JobGiver_GetJoy_TryGiveJob
+[HarmonyPatch(typeof(JobGiver_GetJoy), "TryGiveJob", typeof(Pawn))]
+internal class JobGiver_GetJoy_TryGiveJob
 {
     private static readonly DefMap<JoyGiverDef, float> joyGiverChances = new DefMap<JoyGiverDef, float>();
 
-    [HarmonyPrefix]
     private static bool Prefix(ref Job __result, Pawn pawn)
     {
         var timeAssignmentDef =

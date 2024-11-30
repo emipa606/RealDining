@@ -81,8 +81,6 @@ public class ModSetting : ModSettings
 
     public static bool priorityRoomFood;
 
-    public static int dinnerTimeMode;
-
     public override void ExposeData()
     {
         base.ExposeData();
@@ -92,7 +90,6 @@ public class ModSetting : ModSettings
         Scribe_Values.Look(ref llastFoodInfluenceX, "llastFoodInfluenceX", 0.6f);
         Scribe_Values.Look(ref eatThreshold, "eatThreshold", 0.25f);
         Scribe_Values.Look(ref priorityRoomFood, "priorityRoomFood");
-        Scribe_Values.Look(ref dinnerTimeMode, "dinnerTimeMode");
     }
 
     public static void InitSetting()
@@ -103,7 +100,6 @@ public class ModSetting : ModSettings
         llastFoodInfluenceX = 0.6f;
         eatThreshold = 0.25f;
         priorityRoomFood = false;
-        dinnerTimeMode = 0;
     }
 
     public static string ValLevelLabel(float val)
@@ -233,20 +229,5 @@ public class ModSetting : ModSettings
         }
 
         return -100f;
-    }
-
-    public static string GetDinnerTimeModeStr()
-    {
-        switch (dinnerTimeMode)
-        {
-            case 0:
-                return "Dinner_Time_Mode0";
-            case 1:
-                return "Dinner_Time_Mode1";
-            case 2:
-                return "Dinner_Time_Mode2";
-            default:
-                return "dinnerTimeMode null";
-        }
     }
 }

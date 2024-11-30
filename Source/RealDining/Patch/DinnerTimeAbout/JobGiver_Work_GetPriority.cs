@@ -5,23 +5,12 @@ using YC.RealDining.Resource.DefClass;
 
 namespace YC.RealDining.Patch.DinnerTimeAbout;
 
-[HarmonyPatch(typeof(ThinkNode_Priority_GetJoy))]
-[HarmonyPatch("GetPriority")]
-[HarmonyPatch([
-    typeof(Pawn)
-])]
-internal class Patch_ThinkNode_Priority_GetJoy_GetPriority
+[HarmonyPatch(typeof(JobGiver_Work), nameof(JobGiver_Work.GetPriority), typeof(Pawn))]
+internal class JobGiver_Work_GetPriority
 {
-    [HarmonyPrefix]
     private static bool Prefix(ref float __result, Pawn pawn)
     {
-        if (pawn.needs.joy == null)
-        {
-            __result = 0f;
-            return false;
-        }
-
-        if (Find.TickManager.TicksGame < 5000)
+        if (pawn.workSettings is not { EverWork: true })
         {
             __result = 0f;
             return false;
@@ -34,7 +23,7 @@ internal class Patch_ThinkNode_Priority_GetJoy_GetPriority
             return true;
         }
 
-        __result = JoyUtility.LordPreventsGettingJoy(pawn) ? 0f : 7f;
+        __result = 2f;
         return false;
     }
 }

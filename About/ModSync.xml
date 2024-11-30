@@ -2,7 +2,7 @@
 <ModSyncNinjaData>
   <ID>f730a40d-2db2-40c4-9bad-521fdef5395e</ID>
   <ModName>RealDining (Continued)</ModName>
-  <Version>1.5.1</Version>
+  <Version>1.5.2</Version>
   <SaveBreaking>False</SaveBreaking>
   <Host name="Github">
     <Owner>emipa606</Owner>
@@ -12,3 +12,4 @@
     <Branch>master</Branch>
   </Host>
 </ModSyncNinjaData>
+

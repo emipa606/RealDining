@@ -5,10 +5,9 @@ using YC.RealDining.Resource;
 
 namespace YC.RealDining.Patch.FoodAbout;
 
-[HarmonyPatch(typeof(FoodUtility), "BestFoodInInventory")]
-internal class Patch_BestFoodInInventory
+[HarmonyPatch(typeof(FoodUtility), nameof(FoodUtility.BestFoodInInventory))]
+internal class FoodUtility_BestFoodInInventory
 {
-    [HarmonyPostfix]
     private static void Postfix(ref Thing __result, Pawn holder, Pawn eater = null)
     {
         if (!ModSetting.priorityRoomFood)

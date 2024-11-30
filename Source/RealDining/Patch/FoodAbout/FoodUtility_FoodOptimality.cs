@@ -5,16 +5,9 @@ using YC.RealDining.Resource;
 
 namespace YC.RealDining.Patch.FoodAbout;
 
-[HarmonyPatch(typeof(FoodUtility))]
-[HarmonyPatch("FoodOptimality")]
-[HarmonyPatch([
-    typeof(Pawn),
-    typeof(Thing),
-    typeof(ThingDef),
-    typeof(float),
-    typeof(bool)
-])]
-internal class Patch_FoodOptimality
+[HarmonyPatch(typeof(FoodUtility), nameof(FoodUtility.FoodOptimality), typeof(Pawn), typeof(Thing), typeof(ThingDef),
+    typeof(float), typeof(bool))]
+internal class FoodUtility_FoodOptimality
 {
     private static readonly SimpleCurve FoodOptimalityEffectFromMoodCurve =
     [
@@ -26,7 +19,6 @@ internal class Patch_FoodOptimality
         new CurvePoint(100f, 800f)
     ];
 
-    [HarmonyPrefix]
     private static bool Prefix(ref float __result, Pawn eater, Thing foodSource, ThingDef foodDef, float dist,
         bool takingToInventory = false)
     {

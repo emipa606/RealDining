@@ -1,5 +1,8 @@
 # Changelog for RealDining
 
+1.5.2 - Fixes issues with the placement of schedule buttons regardless of how many other mods add them or in what way.
+
+
 1.5.1 - English translation was missing
 
 

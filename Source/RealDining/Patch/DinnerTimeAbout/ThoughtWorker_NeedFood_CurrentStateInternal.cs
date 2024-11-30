@@ -5,14 +5,9 @@ using YC.RealDining.Resource.DefClass;
 
 namespace YC.RealDining.Patch.DinnerTimeAbout;
 
-[HarmonyPatch(typeof(ThoughtWorker_NeedFood))]
-[HarmonyPatch("CurrentStateInternal")]
-[HarmonyPatch([
-    typeof(Pawn)
-])]
-internal class Patch_ThoghWokr_NedFod_CurrentStateInternal
+[HarmonyPatch(typeof(ThoughtWorker_NeedFood), "CurrentStateInternal", typeof(Pawn))]
+internal class ThoughtWorker_NeedFood_CurrentStateInternal
 {
-    [HarmonyPrefix]
     private static bool Prefix(ref ThoughtState __result, Pawn p)
     {
         if (p.needs.food == null)

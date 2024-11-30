@@ -8,20 +8,10 @@ using YC.RealDining.Resource;
 
 namespace YC.RealDining.Patch.FoodAbout;
 
-[HarmonyPatch(typeof(FoodUtility))]
-[HarmonyPatch("SpawnedFoodSearchInnerScan")]
-[HarmonyPatch([
-    typeof(Pawn),
-    typeof(IntVec3),
-    typeof(List<Thing>),
-    typeof(PathEndMode),
-    typeof(TraverseParms),
-    typeof(float),
-    typeof(Predicate<Thing>)
-])]
-internal class Patch_SpawnedFoodSearchInnerScan
+[HarmonyPatch(typeof(FoodUtility), "SpawnedFoodSearchInnerScan", typeof(Pawn), typeof(IntVec3), typeof(List<Thing>),
+    typeof(PathEndMode), typeof(TraverseParms), typeof(float), typeof(Predicate<Thing>))]
+internal class FoodUtility_SpawnedFoodSearchInnerScan
 {
-    [HarmonyPrefix]
     private static bool Prefix(Pawn eater)
     {
         if (eater.RaceProps.Humanlike)
