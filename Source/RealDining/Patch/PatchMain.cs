@@ -20,10 +20,10 @@ public class PatchMain
         harmony.PatchAll(Assembly.GetExecutingAssembly());
         AmountOfTimeTypes =
             DefDatabase<TimeAssignmentDef>.AllDefsListForReading.Count(def => def.modContentPack.IsOfficialMod);
-        if (!ModsConfig.RoyaltyActive)
-        {
-            AmountOfTimeTypes--;
-        }
+        //if (!ModsConfig.RoyaltyActive)
+        //{
+        //    AmountOfTimeTypes--;
+        //}
 
         NonRimworldTimeTypes =
             DefDatabase<TimeAssignmentDef>.AllDefsListForReading.Where(def => !def.modContentPack.IsOfficialMod)
