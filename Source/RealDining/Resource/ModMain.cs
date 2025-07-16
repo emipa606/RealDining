@@ -26,16 +26,16 @@ public class ModMain : Mod
     public override void DoSettingsWindowContents(Rect inRect)
     {
         var rect = new Rect(0f, 0f, inRect.width * 0.98f, inRect.height);
-        var listing_Standard = new Listing_Standard();
+        var listingStandard = new Listing_Standard();
 
-        listing_Standard.BeginScrollView(inRect, ref ModSetting.scrollPos, ref rect);
-        if (listing_Standard.ButtonText("Restore_default".Translate()))
+        listingStandard.BeginScrollView(inRect, ref ModSetting.scrollPos, ref rect);
+        if (listingStandard.ButtonText("Restore_default".Translate()))
         {
             ModSetting.InitSetting();
         }
 
-        listing_Standard.GapLine(20f);
-        if (listing_Standard.ButtonTextLabeled("Random_degree_of_food_selection".Translate(),
+        listingStandard.GapLine(20f);
+        if (listingStandard.ButtonTextLabeled("Random_degree_of_food_selection".Translate(),
                 ModSetting.ValLevelLabel(ModSetting.randomLevel).Translate()))
         {
             var list = new List<FloatMenuOption>();
@@ -49,9 +49,9 @@ public class ModMain : Mod
             Find.WindowStack.Add(new FloatMenu(list));
         }
 
-        listing_Standard.Label("Random_degree_explain".Translate());
-        listing_Standard.GapLine(20f);
-        if (listing_Standard.ButtonTextLabeled("The_importance_of_the_mood".Translate(),
+        listingStandard.Label("Random_degree_explain".Translate());
+        listingStandard.GapLine(20f);
+        if (listingStandard.ButtonTextLabeled("The_importance_of_the_mood".Translate(),
                 ModSetting.ValLevelLabel(ModSetting.moodInfluenceX).Translate()))
         {
             var list2 = new List<FloatMenuOption>();
@@ -65,24 +65,24 @@ public class ModMain : Mod
             Find.WindowStack.Add(new FloatMenu(list2));
         }
 
-        listing_Standard.Label("Mood_degree_explain".Translate());
-        listing_Standard.GapLine(20f);
-        listing_Standard.Label("Repeated_food_selection_value".Translate() + "   " +
-                               (ModSetting.lastFoodInfluenceX * 10f).ToString());
+        listingStandard.Label("Mood_degree_explain".Translate());
+        listingStandard.GapLine(20f);
+        listingStandard.Label("Repeated_food_selection_value".Translate() + "   " +
+                              (ModSetting.lastFoodInfluenceX * 10f).ToString());
         ModSetting.lastFoodInfluenceX =
-            (float)Math.Round(listing_Standard.Slider(ModSetting.lastFoodInfluenceX * 10f, 0f, 10f)) / 10f;
-        listing_Standard.Label("Repeated_food_selection_value2".Translate() + "   " +
-                               (ModSetting.llastFoodInfluenceX * 10f).ToString());
+            (float)Math.Round(listingStandard.Slider(ModSetting.lastFoodInfluenceX * 10f, 0f, 10f)) / 10f;
+        listingStandard.Label("Repeated_food_selection_value2".Translate() + "   " +
+                              (ModSetting.llastFoodInfluenceX * 10f).ToString());
         ModSetting.llastFoodInfluenceX =
-            (float)Math.Round(listing_Standard.Slider(ModSetting.llastFoodInfluenceX * 10f, 0f, 10f)) / 10f;
-        listing_Standard.Label("Repeated_value_explain".Translate());
-        listing_Standard.Label("Repeated_value_explain2".Translate());
-        listing_Standard.GapLine(20f);
-        listing_Standard.Label("Eat_threshold".Translate() + "   " + ModSetting.eatThreshold.ToString());
-        ModSetting.eatThreshold = (float)Math.Round(listing_Standard.Slider(ModSetting.eatThreshold, 0f, 0.7f), 2);
-        listing_Standard.Label("Eat_threshold_explain".Translate());
-        listing_Standard.GapLine(20f);
-        if (listing_Standard.ButtonTextLabeled("Priority_NotInventory_Food".Translate(),
+            (float)Math.Round(listingStandard.Slider(ModSetting.llastFoodInfluenceX * 10f, 0f, 10f)) / 10f;
+        listingStandard.Label("Repeated_value_explain".Translate());
+        listingStandard.Label("Repeated_value_explain2".Translate());
+        listingStandard.GapLine(20f);
+        listingStandard.Label("Eat_threshold".Translate() + "   " + ModSetting.eatThreshold.ToString());
+        ModSetting.eatThreshold = (float)Math.Round(listingStandard.Slider(ModSetting.eatThreshold, 0f, 0.7f), 2);
+        listingStandard.Label("Eat_threshold_explain".Translate());
+        listingStandard.GapLine(20f);
+        if (listingStandard.ButtonTextLabeled("Priority_NotInventory_Food".Translate(),
                 ModSetting.priorityRoomFood.ToStringYesNo()))
         {
             ModSetting.priorityRoomFood = !ModSetting.priorityRoomFood;
@@ -90,12 +90,12 @@ public class ModMain : Mod
 
         if (currentVersion != null)
         {
-            listing_Standard.Gap();
+            listingStandard.Gap();
             GUI.contentColor = Color.gray;
-            listing_Standard.Label("RealDining_Version".Translate(currentVersion));
+            listingStandard.Label("RealDining_Version".Translate(currentVersion));
             GUI.contentColor = Color.white;
         }
 
-        listing_Standard.EndScrollView(inRect.width, ref rect);
+        listingStandard.EndScrollView(inRect.width, ref rect);
     }
 }

@@ -7,8 +7,7 @@ using YC.RealDining.Resource.DefClass;
 
 namespace YC.RealDining.Patch.DinnerTimeAbout;
 
-[HarmonyPatch(typeof(JoyUtility), nameof(JoyUtility.JoyTickCheckEnd), typeof(Pawn), typeof(JoyTickFullJoyAction),
-    typeof(float), typeof(Building))]
+[HarmonyPatch(typeof(JoyUtility), nameof(JoyUtility.JoyTickCheckEnd))]
 internal class JoyUtility_JoyTickCheckEnd
 {
     private static bool Prefix(Pawn pawn, JoyTickFullJoyAction fullJoyAction = JoyTickFullJoyAction.EndJob,
@@ -66,15 +65,14 @@ internal class JoyUtility_JoyTickCheckEnd
             return false;
         }
 
-        if (fullJoyAction == JoyTickFullJoyAction.EndJob)
+        switch (fullJoyAction)
         {
-            pawn.jobs.curDriver.EndJobWith(JobCondition.Succeeded);
-            return false;
-        }
-
-        if (fullJoyAction == JoyTickFullJoyAction.GoToNextToil)
-        {
-            pawn.jobs.curDriver.ReadyForNextToil();
+            case JoyTickFullJoyAction.EndJob:
+                pawn.jobs.curDriver.EndJobWith(JobCondition.Succeeded);
+                break;
+            case JoyTickFullJoyAction.GoToNextToil:
+                pawn.jobs.curDriver.ReadyForNextToil();
+                break;
         }
 
         return false;

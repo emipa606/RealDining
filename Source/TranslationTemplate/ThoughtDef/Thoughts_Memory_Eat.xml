@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: 吃到不同的食物 -->
+  <EatFirstDifferentFood.stages.0.label>吃到不同的食物</EatFirstDifferentFood.stages.0.label>
+  <!-- EN: 新的食物，新的体验。不怕吃腻食物了！ -->
+  <EatFirstDifferentFood.stages.0.description>新的食物，新的体验。不怕吃腻食物了！</EatFirstDifferentFood.stages.0.description>
+  <!-- EN: 丰富的食物 -->
+  <EatSecondDifferentFood.stages.0.label>丰富的食物</EatSecondDifferentFood.stages.0.label>
+  <!-- EN: 尝到了这么多丰富的食物，我的生活充满了色彩！ -->
+  <EatSecondDifferentFood.stages.0.description>尝到了这么多丰富的食物，我的生活充满了色彩！</EatSecondDifferentFood.stages.0.description>
+</LanguageData>

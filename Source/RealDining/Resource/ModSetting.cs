@@ -84,11 +84,11 @@ public class ModSetting : ModSettings
     public override void ExposeData()
     {
         base.ExposeData();
-        Scribe_Values.Look(ref moodInfluenceX, "moodInfluenceX", 0.88f);
-        Scribe_Values.Look(ref randomLevel, "randomLevel", 103f);
-        Scribe_Values.Look(ref lastFoodInfluenceX, "lastFoodInfluenceX", 0.4f);
-        Scribe_Values.Look(ref llastFoodInfluenceX, "llastFoodInfluenceX", 0.6f);
-        Scribe_Values.Look(ref eatThreshold, "eatThreshold", 0.25f);
+        Scribe_Values.Look(ref moodInfluenceX, "moodInfluenceX", moodInfluenceXDefault);
+        Scribe_Values.Look(ref randomLevel, "randomLevel", randomLevelDefault);
+        Scribe_Values.Look(ref lastFoodInfluenceX, "lastFoodInfluenceX", lastFoodInfluenceXDefault);
+        Scribe_Values.Look(ref llastFoodInfluenceX, "llastFoodInfluenceX", llastFoodInfluenceXDefault);
+        Scribe_Values.Look(ref eatThreshold, "eatThreshold", eatThresholdDefault);
         Scribe_Values.Look(ref priorityRoomFood, "priorityRoomFood");
     }
 

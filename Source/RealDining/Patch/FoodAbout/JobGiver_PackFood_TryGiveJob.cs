@@ -8,7 +8,6 @@ namespace YC.RealDining.Patch.FoodAbout;
 [HarmonyPatch(typeof(JobGiver_PackFood), "TryGiveJob", typeof(Pawn))]
 internal class JobGiver_PackFood_TryGiveJob
 {
-    [HarmonyPrefix]
     private static bool Prefix(Pawn pawn)
     {
         if (pawn.RaceProps.Humanlike)

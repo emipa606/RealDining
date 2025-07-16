@@ -7,7 +7,7 @@ public class HadAteFoodType : IExposable
 {
     public static readonly string StrEmpty = "-1";
 
-    private Dictionary<string, string> map = new Dictionary<string, string>();
+    private Dictionary<string, string> map = new();
 
     public void ExposeData()
     {
@@ -16,10 +16,7 @@ public class HadAteFoodType : IExposable
 
     public string GetHadAteFoodType(Pawn pawn)
     {
-        if (map == null)
-        {
-            map = new Dictionary<string, string>();
-        }
+        map ??= new Dictionary<string, string>();
 
         var result = !map.ContainsKey(pawn.GetUniqueLoadID()) ? StrEmpty : map[pawn.GetUniqueLoadID()];
 
@@ -28,10 +25,7 @@ public class HadAteFoodType : IExposable
 
     public void SetHadAteFoodType(Pawn pawn, string foodType)
     {
-        if (map == null)
-        {
-            map = new Dictionary<string, string>();
-        }
+        map ??= new Dictionary<string, string>();
 
         map[pawn.GetUniqueLoadID()] = foodType;
     }

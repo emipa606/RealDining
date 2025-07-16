@@ -13,18 +13,18 @@ internal class TimeAssignmentSelector_DrawTimeAssignmentSelectorGrid
 {
     private static void Prepare()
     {
-        PatchMain.harmony.Unpatch(typeof(TimeAssignmentSelector).GetMethod("DrawTimeAssignmentSelectorGrid"),
+        new Harmony("YC.RealDining").Unpatch(typeof(TimeAssignmentSelector).GetMethod("DrawTimeAssignmentSelectorGrid"),
             HarmonyPatchType.All);
     }
 
     private static void Prefix(ref Rect rect)
     {
-        var shorternBy = rect.width * 0.135f;
+        var shortenBy = rect.width * 0.135f;
         for (var i = 0; i < PatchMain.AmountOfTimeTypes + PatchMain.NonRimworldTimeTypes.Count(); i++)
         {
             if (i > 7)
             {
-                rect.width -= shorternBy;
+                rect.width -= shortenBy;
             }
         }
     }
@@ -37,12 +37,12 @@ internal class TimeAssignmentSelector_DrawTimeAssignmentSelectorGrid
         rect2.x += rect2.width * PatchMain.AmountOfTimeTypes;
         foreach (var nonRimworldTimeType in PatchMain.NonRimworldTimeTypes)
         {
-            DrawTimeAssignmentSelectorFor(rect2, nonRimworldTimeType);
+            drawTimeAssignmentSelectorFor(rect2, nonRimworldTimeType);
             rect2.x += rect2.width;
         }
     }
 
-    private static void DrawTimeAssignmentSelectorFor(Rect rect, TimeAssignmentDef ta)
+    private static void drawTimeAssignmentSelectorFor(Rect rect, TimeAssignmentDef ta)
     {
         rect = rect.ContractedBy(2f);
         GUI.DrawTexture(rect, ta.ColorTexture);

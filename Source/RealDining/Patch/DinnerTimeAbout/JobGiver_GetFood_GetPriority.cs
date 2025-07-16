@@ -13,25 +13,9 @@ internal class JobGiver_GetFood_GetPriority
         Pawn pawn)
     {
         var food = pawn.needs.food;
-        if (food == null)
-        {
-            __result = 0f;
-            return false;
-        }
-
-        if (pawn.needs.food.CurCategory < HungerCategory.Starving && FoodUtility.ShouldBeFedBySomeone(pawn))
-        {
-            __result = 0f;
-            return false;
-        }
-
-        if (food.CurCategory < ___minCategory)
-        {
-            __result = 0f;
-            return false;
-        }
-
-        if (food.CurLevelPercentage > ___maxLevelPercentage)
+        if (food == null ||
+            pawn.needs.food.CurCategory < HungerCategory.Starving && FoodUtility.ShouldBeFedBySomeone(pawn) ||
+            food.CurCategory < ___minCategory || food.CurLevelPercentage > ___maxLevelPercentage)
         {
             __result = 0f;
             return false;
@@ -58,13 +42,8 @@ internal class JobGiver_GetFood_GetPriority
 
                 if (pawn.timetable.GetAssignment((GenLocalDate.HourOfDay(pawn) + 1) % 24) ==
                     TimeAssignmentDefDinner.DinnerDef &&
-                    food.CurLevelPercentage > pawn.RaceProps.FoodLevelPercentageWantEat * 0.48f)
-                {
-                    __result = 0f;
-                    return false;
-                }
-
-                if (pawn.timetable.GetAssignment((GenLocalDate.HourOfDay(pawn) + 2) % 24) ==
+                    food.CurLevelPercentage > pawn.RaceProps.FoodLevelPercentageWantEat * 0.48f ||
+                    pawn.timetable.GetAssignment((GenLocalDate.HourOfDay(pawn) + 2) % 24) ==
                     TimeAssignmentDefDinner.DinnerDef &&
                     food.CurLevelPercentage > pawn.RaceProps.FoodLevelPercentageWantEat * 0.8f)
                 {

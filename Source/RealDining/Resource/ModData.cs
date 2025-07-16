@@ -5,11 +5,11 @@ namespace YC.RealDining.Resource;
 
 public class ModData : GameComponent
 {
-    public static HadAteFoodType lastFoodType = new HadAteFoodType();
+    private static HadAteFoodType lastFoodType = new();
 
-    public static HadAteFoodType llastFoodType = new HadAteFoodType();
+    private static HadAteFoodType llastFoodType = new();
 
-    public static readonly Dictionary<string, float> foodClassRandomVal = new Dictionary<string, float>();
+    public static readonly Dictionary<string, float> foodClassRandomVal = new();
 
     public static string findedInventoryFoodID;
 
@@ -26,47 +26,35 @@ public class ModData : GameComponent
 
     public static string GetLastFoodType(Pawn pawn)
     {
-        if (lastFoodType == null)
-        {
-            lastFoodType = new HadAteFoodType();
-        }
+        lastFoodType ??= new HadAteFoodType();
 
         return lastFoodType.GetHadAteFoodType(pawn);
     }
 
     public static void SetLastFoodType(Pawn pawn, string foodType)
     {
-        if (lastFoodType == null)
-        {
-            lastFoodType = new HadAteFoodType();
-        }
+        lastFoodType ??= new HadAteFoodType();
 
         lastFoodType.SetHadAteFoodType(pawn, foodType);
     }
 
     public static string GetLlastFoodType(Pawn pawn)
     {
-        if (llastFoodType == null)
-        {
-            llastFoodType = new HadAteFoodType();
-        }
+        llastFoodType ??= new HadAteFoodType();
 
         return llastFoodType.GetHadAteFoodType(pawn);
     }
 
     public static void SetLlastFoodType(Pawn pawn, string foodType)
     {
-        if (llastFoodType == null)
-        {
-            llastFoodType = new HadAteFoodType();
-        }
+        llastFoodType ??= new HadAteFoodType();
 
         llastFoodType.SetHadAteFoodType(pawn, foodType);
     }
 
     public override void ExposeData()
     {
-        Scribe_Deep.Look(ref lastFoodType, "lastFoodType", []);
-        Scribe_Deep.Look(ref llastFoodType, "llastFoodType", []);
+        Scribe_Deep.Look(ref lastFoodType, "lastFoodType");
+        Scribe_Deep.Look(ref llastFoodType, "llastFoodType");
     }
 }

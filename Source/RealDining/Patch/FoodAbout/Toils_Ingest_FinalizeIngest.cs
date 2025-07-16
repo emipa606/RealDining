@@ -57,15 +57,15 @@ internal class Toils_Ingest_FinalizeIngest
                 return;
             }
 
-            MoodAdd(ingester, thing);
-            RecordLastFood(ingester, thing);
+            moodAdd(ingester, thing);
+            recordLastFood(ingester, thing);
         };
         toil.defaultCompleteMode = ToilCompleteMode.Instant;
         __result = toil;
         return false;
     }
 
-    public static void RecordLastFood(Pawn pawn, Thing thing)
+    private static void recordLastFood(Pawn pawn, Thing thing)
     {
         var lastFoodType = ModData.GetLastFoodType(pawn);
         if (lastFoodType != HadAteFoodType.StrEmpty)
@@ -76,9 +76,9 @@ internal class Toils_Ingest_FinalizeIngest
         ModData.SetLastFoodType(pawn, thing.def.defName);
     }
 
-    public static void MoodAdd(Pawn pawn, Thing thing)
+    private static void moodAdd(Pawn pawn, Thing thing)
     {
-        if (IsBadFood(pawn, thing))
+        if (isBadFood(pawn, thing))
         {
             return;
         }
@@ -98,7 +98,7 @@ internal class Toils_Ingest_FinalizeIngest
         }
     }
 
-    public static bool IsBadFood(Pawn pawn, Thing thing)
+    private static bool isBadFood(Pawn pawn, Thing thing)
     {
         var list = FoodUtility.ThoughtsFromIngesting(pawn, thing, thing.def);
         for (var i = 0; i < list.Count; i++)

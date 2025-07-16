@@ -13,25 +13,8 @@ internal class JobGiver_GetRest_GetPriority
         Pawn pawn)
     {
         var rest = pawn.needs.rest;
-        if (rest == null)
-        {
-            __result = 0f;
-            return false;
-        }
-
-        if (rest.CurCategory < ___minCategory)
-        {
-            __result = 0f;
-            return false;
-        }
-
-        if (rest.CurLevelPercentage > ___maxLevelPercentage)
-        {
-            __result = 0f;
-            return false;
-        }
-
-        if (Find.TickManager.TicksGame < pawn.mindState.canSleepTick)
+        if (rest == null || rest.CurCategory < ___minCategory || rest.CurLevelPercentage > ___maxLevelPercentage ||
+            Find.TickManager.TicksGame < pawn.mindState.canSleepTick)
         {
             __result = 0f;
             return false;

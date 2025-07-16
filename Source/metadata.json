@@ -2,10 +2,17 @@
   "Continued": true,
   "CanAdd": "0",
   "CanRemove": "2",
-  "PreviewVersion": "1.5",
+  "PreviewVersion": "1.6",
   "SocialImageSet": true,
   "SearchTags": [
     "dining",
     " mealtime"
-  ]
+  ],
+  "Patches": true,
+  "Defs": true,
+  "Assemblies": true,
+  "LinesOfCode": 42586,
+  "LinesOfXML": 1488,
+  "CodeBaseSize": 74,
+  "LastXmlCleaning": "2025-07-16T17:12:17.6993333+02:00"
 }
