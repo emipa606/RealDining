@@ -8,7 +8,7 @@ using Verse;
 namespace YC.RealDining.Patch;
 
 [StaticConstructorOnStartup]
-public class PatchMain
+public static class PatchMain
 {
     public static readonly int AmountOfTimeTypes;
     public static readonly IEnumerable<TimeAssignmentDef> NonRimworldTimeTypes;

@@ -7,7 +7,7 @@ namespace YC.RealDining.Patch.FoodAbout;
 
 [HarmonyPatch(typeof(FoodUtility), nameof(FoodUtility.FoodOptimality), typeof(Pawn), typeof(Thing), typeof(ThingDef),
     typeof(float), typeof(bool))]
-internal class FoodUtility_FoodOptimality
+internal static class FoodUtility_FoodOptimality
 {
     private static readonly SimpleCurve FoodOptimalityEffectFromMoodCurve =
     [
@@ -19,7 +19,7 @@ internal class FoodUtility_FoodOptimality
         new CurvePoint(100f, 800f)
     ];
 
-    private static bool Prefix(ref float __result, Pawn eater, Thing foodSource, ThingDef foodDef, float dist,
+    public static bool Prefix(ref float __result, Pawn eater, Thing foodSource, ThingDef foodDef, float dist,
         bool takingToInventory = false)
     {
         var num = 300f;

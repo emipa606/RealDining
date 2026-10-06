@@ -6,4 +6,19 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="RealDining/RealDining.csproj" />
+  <Folder Name="/XML/Defs/TimeAssignmentDefs/">
+    <File Path="../Defs/TimeAssignmentDefs/TimeAssignments.xml" />
+  </Folder>
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/ModSettings.xml" />
+  </Folder>
+  <Folder Name="/XML/Patches/">
+    <File Path="../Patches/Patch_Thoughts_Situation_Needs.xml" />
+  </Folder>
+  <Folder Name="/XML/Defs/ThoughtDefs/">
+    <File Path="../Defs/ThoughtDefs/Thoughts_Memory_Eat.xml" />
+  </Folder>
 </Solution>

@@ -9,15 +9,15 @@ namespace YC.RealDining.Patch.DinnerTimeAbout;
 
 [HarmonyPriority(Priority.Last)]
 [HarmonyPatch(typeof(TimeAssignmentSelector), "DrawTimeAssignmentSelectorGrid")]
-internal class TimeAssignmentSelector_DrawTimeAssignmentSelectorGrid
+internal static class TimeAssignmentSelector_DrawTimeAssignmentSelectorGrid
 {
-    private static void Prepare()
+    public static void Prepare()
     {
         new Harmony("YC.RealDining").Unpatch(typeof(TimeAssignmentSelector).GetMethod("DrawTimeAssignmentSelectorGrid"),
             HarmonyPatchType.All);
     }
 
-    private static void Prefix(ref Rect rect)
+    public static void Prefix(ref Rect rect)
     {
         var shortenBy = rect.width * 0.135f;
         for (var i = 0; i < PatchMain.AmountOfTimeTypes + PatchMain.NonRimworldTimeTypes.Count(); i++)
@@ -29,7 +29,7 @@ internal class TimeAssignmentSelector_DrawTimeAssignmentSelectorGrid
         }
     }
 
-    private static void Postfix(Rect rect)
+    public static void Postfix(Rect rect)
     {
         var rect2 = rect;
         rect2.xMax = rect2.center.x;
@@ -48,11 +48,13 @@ internal class TimeAssignmentSelector_DrawTimeAssignmentSelectorGrid
         {
             return;
         }
+
         rect = rect.ContractedBy(2f);
         if (ta.ColorTexture != null)
         {
             GUI.DrawTexture(rect, ta.ColorTexture);
         }
+
         if (Widgets.ButtonInvisible(rect))
         {
             TimeAssignmentSelector.selectedAssignment = ta;
@@ -69,7 +71,7 @@ internal class TimeAssignmentSelector_DrawTimeAssignmentSelectorGrid
         Text.Anchor = TextAnchor.MiddleCenter;
         GUI.color = Color.white;
         var labelCap = ta.LabelCap;
-        Widgets.Label(rect, labelCap.ToString() ?? string.Empty);
+        Widgets.Label(rect, labelCap.ToString());
         Text.Anchor = TextAnchor.UpperLeft;
         if (TimeAssignmentSelector.selectedAssignment == ta)
         {

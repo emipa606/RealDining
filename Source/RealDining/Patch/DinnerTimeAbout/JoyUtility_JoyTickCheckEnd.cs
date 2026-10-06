@@ -8,9 +8,9 @@ using YC.RealDining.Resource.DefClass;
 namespace YC.RealDining.Patch.DinnerTimeAbout;
 
 [HarmonyPatch(typeof(JoyUtility), nameof(JoyUtility.JoyTickCheckEnd))]
-internal class JoyUtility_JoyTickCheckEnd
+internal static class JoyUtility_JoyTickCheckEnd
 {
-    private static bool Prefix(Pawn pawn, JoyTickFullJoyAction fullJoyAction = JoyTickFullJoyAction.EndJob,
+    public static bool Prefix(Pawn pawn, JoyTickFullJoyAction fullJoyAction = JoyTickFullJoyAction.EndJob,
         float extraJoyGainFactor = 1f, Building joySource = null)
     {
         var curJob = pawn.CurJob;

@@ -8,15 +8,14 @@ using YC.RealDining.Resource.DefClass;
 namespace YC.RealDining.Patch.DinnerTimeAbout;
 
 [HarmonyPatch(typeof(JobGiver_GetJoy), "TryGiveJob", typeof(Pawn))]
-internal class JobGiver_GetJoy_TryGiveJob
+internal static class JobGiver_GetJoy_TryGiveJob
 {
     private static readonly DefMap<JoyGiverDef, float> joyGiverChances = new();
 
-    private static bool Prefix(ref Job __result, Pawn pawn)
+    public static bool Prefix(ref Job __result, Pawn pawn)
     {
         var timeAssignmentDef =
             pawn.timetable == null ? TimeAssignmentDefOf.Anything : pawn.timetable.CurrentAssignment;
-        bool result;
         if (timeAssignmentDef != TimeAssignmentDefDinner.DinnerDef)
         {
             return true;
@@ -39,33 +38,33 @@ internal class JobGiver_GetJoy_TryGiveJob
                 continue;
             }
 
-            if (!pawn.needs.joy.tolerances.BoredOf(joyGiverDef.joyKind) &&
-                joyGiverDef.Worker.CanBeGivenTo(pawn))
+            if (pawn.needs.joy.tolerances.BoredOf(joyGiverDef.joyKind) ||
+                !joyGiverDef.Worker.CanBeGivenTo(pawn))
             {
-                if (joyGiverDef.pctPawnsEverDo < 1f)
-                {
-                    Rand.PushState(pawn.thingIDNumber ^ 63216713);
-                    if (Rand.Value >= joyGiverDef.pctPawnsEverDo)
-                    {
-                        Rand.PopState();
-                        goto IL_196;
-                    }
-
-                    Rand.PopState();
-                }
-
-                var num = tolerances[joyGiverDef.joyKind];
-                var num2 = Mathf.Pow(1f - num, 5f);
-                num2 = Mathf.Max(0.001f, num2);
-                joyGiverChances[joyGiverDef] = joyGiverDef.Worker.GetChance(pawn) * num2;
+                continue;
             }
 
-            IL_196: ;
+            if (joyGiverDef.pctPawnsEverDo < 1f)
+            {
+                Rand.PushState(pawn.thingIDNumber ^ 63216713);
+                if (Rand.Value >= joyGiverDef.pctPawnsEverDo)
+                {
+                    Rand.PopState();
+                    continue;
+                }
+
+                Rand.PopState();
+            }
+
+            var num = tolerances[joyGiverDef.joyKind];
+            var num2 = Mathf.Pow(1f - num, 5f);
+            num2 = Mathf.Max(0.001f, num2);
+            joyGiverChances[joyGiverDef] = joyGiverDef.Worker.GetChance(pawn) * num2;
         }
 
         var num3 = 0;
         Job job;
-        for (;;)
+        while (true)
         {
             var joyGiverDef2 = new JoyGiverDef();
             bool hasJoyGiver;
@@ -81,10 +80,11 @@ internal class JobGiver_GetJoy_TryGiveJob
 
             if (!hasJoyGiver)
             {
-                goto Block_17;
+                __result = null;
+                return false;
             }
 
-            if (pawn.needs.joy.CurLevel < 0.95f || joyGiverDef2.joyKind != JoyKindDefOf.Gluttonous)
+            if (pawn.needs.joy.CurLevel < 0.95f || joyGiverDef2?.joyKind != JoyKindDefOf.Gluttonous)
             {
                 job = tryGiveJobFromJoyGiverDefDirect(joyGiverDef2, pawn);
                 if (job != null)
@@ -98,9 +98,6 @@ internal class JobGiver_GetJoy_TryGiveJob
         }
 
         __result = job;
-        return false;
-        Block_17:
-        __result = null;
         return false;
     }
 

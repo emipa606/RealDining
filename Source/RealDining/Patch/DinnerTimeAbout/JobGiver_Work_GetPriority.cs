@@ -6,9 +6,9 @@ using YC.RealDining.Resource.DefClass;
 namespace YC.RealDining.Patch.DinnerTimeAbout;
 
 [HarmonyPatch(typeof(JobGiver_Work), nameof(JobGiver_Work.GetPriority), typeof(Pawn))]
-internal class JobGiver_Work_GetPriority
+internal static class JobGiver_Work_GetPriority
 {
-    private static bool Prefix(ref float __result, Pawn pawn)
+    public static bool Prefix(ref float __result, Pawn pawn)
     {
         if (pawn.workSettings is not { EverWork: true })
         {

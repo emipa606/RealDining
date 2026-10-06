@@ -104,7 +104,7 @@ public class ModSetting : ModSettings
 
     public static string ValLevelLabel(float val)
     {
-        if (val == moodInfluenceX)
+        if (val.Equals(moodInfluenceX))
         {
             switch (val)
             {
@@ -122,7 +122,7 @@ public class ModSetting : ModSettings
         }
         else
         {
-            if (val != randomLevel)
+            if (!val.Equals(randomLevel))
             {
                 return "ValLevelLabel Error";
             }
@@ -147,7 +147,7 @@ public class ModSetting : ModSettings
 
     public static float ValLevelNum(float val)
     {
-        if (val == moodInfluenceX)
+        if (val.Equals(moodInfluenceX))
         {
             switch (val)
             {
@@ -165,7 +165,7 @@ public class ModSetting : ModSettings
         }
         else
         {
-            if (val != randomLevel)
+            if (!val.Equals(randomLevel))
             {
                 return -1f;
             }
@@ -190,7 +190,7 @@ public class ModSetting : ModSettings
 
     public static float ValNumLevel(float val, float num)
     {
-        if (val == moodInfluenceX)
+        if (val.Equals(moodInfluenceX))
         {
             switch (num)
             {
@@ -208,7 +208,7 @@ public class ModSetting : ModSettings
         }
         else
         {
-            if (val != randomLevel)
+            if (!val.Equals(randomLevel))
             {
                 return -100f;
             }

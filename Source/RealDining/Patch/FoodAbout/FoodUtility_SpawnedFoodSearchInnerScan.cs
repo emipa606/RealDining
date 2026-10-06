@@ -10,9 +10,9 @@ namespace YC.RealDining.Patch.FoodAbout;
 
 [HarmonyPatch(typeof(FoodUtility), "SpawnedFoodSearchInnerScan", typeof(Pawn), typeof(IntVec3), typeof(List<Thing>),
     typeof(PathEndMode), typeof(TraverseParms), typeof(float), typeof(Predicate<Thing>))]
-internal class FoodUtility_SpawnedFoodSearchInnerScan
+internal static class FoodUtility_SpawnedFoodSearchInnerScan
 {
-    private static bool Prefix(Pawn eater)
+    public static bool Prefix(Pawn eater)
     {
         if (eater.RaceProps.Humanlike)
         {
