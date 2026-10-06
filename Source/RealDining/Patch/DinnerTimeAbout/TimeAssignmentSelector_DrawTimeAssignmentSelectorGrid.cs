@@ -44,8 +44,15 @@ internal class TimeAssignmentSelector_DrawTimeAssignmentSelectorGrid
 
     private static void drawTimeAssignmentSelectorFor(Rect rect, TimeAssignmentDef ta)
     {
+        if (ta == null)
+        {
+            return;
+        }
         rect = rect.ContractedBy(2f);
-        GUI.DrawTexture(rect, ta.ColorTexture);
+        if (ta.ColorTexture != null)
+        {
+            GUI.DrawTexture(rect, ta.ColorTexture);
+        }
         if (Widgets.ButtonInvisible(rect))
         {
             TimeAssignmentSelector.selectedAssignment = ta;
@@ -61,7 +68,8 @@ internal class TimeAssignmentSelector_DrawTimeAssignmentSelectorGrid
         Text.Font = GameFont.Small;
         Text.Anchor = TextAnchor.MiddleCenter;
         GUI.color = Color.white;
-        Widgets.Label(rect, ta.LabelCap);
+        var labelCap = ta.LabelCap;
+        Widgets.Label(rect, labelCap.ToString() ?? string.Empty);
         Text.Anchor = TextAnchor.UpperLeft;
         if (TimeAssignmentSelector.selectedAssignment == ta)
         {
