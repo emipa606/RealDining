@@ -1,5 +1,8 @@
 # Changelog for RealDining
 
+1.7.0 - Mod updated for 1.7 and passed autotests
+
+
 1.6.1 - Fixed missing nullchecks, thanks OPPO9008.
 Code-cleanup.
 Used DeepL to update translations for German, ChineseSimplified, French, Russian

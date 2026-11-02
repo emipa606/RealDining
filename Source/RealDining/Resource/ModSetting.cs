@@ -5,37 +5,37 @@ namespace YC.RealDining.Resource;
 
 public class ModSetting : ModSettings
 {
-    public const float moodInfluenceXDefault = 0.88f;
+    private const float moodInfluenceXDefault = 0.88f;
 
-    public const float randomLevelDefault = 103f;
+    private const float randomLevelDefault = 103f;
 
-    public const float lastFoodInfluenceXDefault = 0.4f;
+    private const float lastFoodInfluenceXDefault = 0.4f;
 
-    public const float llastFoodInfluenceXDefault = 0.6f;
+    private const float llastFoodInfluenceXDefault = 0.6f;
 
-    public const float eatThresholdDefault = 0.25f;
+    private const float eatThresholdDefault = 0.25f;
 
     public const int dinnerTimeModeDefault = 0;
 
-    public const float randomLevelHighest = 300f;
+    private const float randomLevelHighest = 300f;
 
-    public const float randomLevelHigh = 200f;
+    private const float randomLevelHigh = 200f;
 
-    public const float randomLevelMid = 103f;
+    private const float randomLevelMid = 103f;
 
-    public const float randomLevelLow = 50f;
+    private const float randomLevelLow = 50f;
 
-    public const float randomLevelLowest = 0f;
+    private const float randomLevelLowest = 0f;
 
-    public const float moodInfLevelHighest = 1.5f;
+    private const float moodInfLevelHighest = 1.5f;
 
-    public const float moodInfLevelHigh = 1.25f;
+    private const float moodInfLevelHigh = 1.25f;
 
-    public const float moodInfLevelMid = 1.03f;
+    private const float moodInfLevelMid = 1.03f;
 
-    public const float moodInfLevelLow = 0.88f;
+    private const float moodInfLevelLow = 0.88f;
 
-    public const float moodInfLevelLowest = 0.68f;
+    private const float moodInfLevelLowest = 0.68f;
 
     public static readonly string[] levelLabel =
     [
@@ -108,15 +108,15 @@ public class ModSetting : ModSettings
         {
             switch (val)
             {
-                case 0.68f:
+                case moodInfLevelLowest:
                     return "Lowest";
-                case 0.88f:
+                case moodInfLevelLow:
                     return "Low";
-                case 1.03f:
+                case moodInfLevelMid:
                     return "Medium";
-                case 1.25f:
+                case moodInfLevelHigh:
                     return "High";
-                case 1.5f:
+                case moodInfLevelHighest:
                     return "Highest";
             }
         }
@@ -129,15 +129,15 @@ public class ModSetting : ModSettings
 
             switch (val)
             {
-                case 0f:
+                case randomLevelLowest:
                     return "Lowest";
-                case 50f:
+                case randomLevelLow:
                     return "Low";
-                case 103f:
+                case randomLevelMid:
                     return "Medium";
-                case 200f:
+                case randomLevelHigh:
                     return "High";
-                case 300f:
+                case randomLevelHighest:
                     return "Highest";
             }
         }

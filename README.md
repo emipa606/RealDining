@@ -74,4 +74,4 @@ The display position of meal time can be changed in settings, including left, mi
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/RealDining?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2280250569) | mealtime, dining
+[![Image](https://img.shields.io/github/v/release/emipa606/RealDining?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2280250569) | dining, mealtime

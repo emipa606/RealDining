@@ -17,10 +17,12 @@ public static class PatchMain
     {
         new Harmony("YC.RealDining").PatchAll(Assembly.GetExecutingAssembly());
         AmountOfTimeTypes =
-            DefDatabase<TimeAssignmentDef>.AllDefsListForReading.Count(def => def.modContentPack != null && def.modContentPack.IsOfficialMod);
+            DefDatabase<TimeAssignmentDef>.AllDefsListForReading.Count(def =>
+                def.modContentPack is { IsOfficialMod: true });
 
         NonRimworldTimeTypes =
-            DefDatabase<TimeAssignmentDef>.AllDefsListForReading.Where(def => def.modContentPack == null || !def.modContentPack.IsOfficialMod)
+            DefDatabase<TimeAssignmentDef>.AllDefsListForReading
+                .Where(def => def.modContentPack is not { IsOfficialMod: true })
                 .OrderBy(def => def.label ?? string.Empty)
                 .ToList();
     }
